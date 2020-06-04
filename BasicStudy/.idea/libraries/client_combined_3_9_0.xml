@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="client-combined-3.9.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/tools/client-combined-3.9.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/tools/client-combined-3.9.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
