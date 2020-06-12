@@ -1,0 +1,64 @@
+String类概述
+    字符串是由多个字符组成的一串数据(字符序列)
+    字符串可以看成是字符数组
+
+通过查看API，我们可以知道
+    字符串字面值”abc”也可以看成是一个字符串对象。
+    字符串是常量，一旦被赋值，就不能被改变。
+
+构造方法
+    public String()
+        空构造
+    public String(byte[] bytes)
+        把字节数组转成字符串
+    public String(byte[] bytes,int offset,int length)
+        把字节数组的一部分转成字符串
+    public String(char[] value)
+        把字符数组转成字符串
+    public String(char[] value,int offset,int count)
+        把字符数组的一部分转成字符串
+    public String(String original)
+        把字符串常量值转成字符串
+
+字符串的方法：
+    public int length()：返回此字符串的长度。
+
+String类的判断功能
+    boolean equals(Object obj) ：比较字符串的内容是否相同,区分大小写
+    boolean equalsIgnoreCase(String str)：比较字符串的内容是否相同,忽略大小写
+    boolean contains(String str)：判断大字符串中是否包含小字符串
+    boolean startsWith(String str)：判断字符串是否以某个指定的字符串开头
+    boolean endsWith(String str)：判断字符串是否以某个指定的字符串结尾
+    boolean isEmpty()：判断字符串是否为空
+
+String类的获取功能
+    int length()：获取字符串的长度。
+    char charAt(int index):获取指定索引位置的字符
+    int indexOf(int ch):返回指定字符在此字符串中第一次出现处的索引。
+    int indexOf(String str):返回指定字符串在此字符串中第一次出现处的索引。
+    int indexOf(int ch,int fromIndex):返回指定字符在此字符串中从指定位置后第一次出现处的索引。
+    int indexOf(String str,int fromIndex):返回指定字符串在此字符串中从指定位置后第一次出现处的索引。
+    String substring(int start):从指定位置开始截取字符串,默认到末尾。
+    String substring(int start,int end):从指定位置开始到指定位置结束截取字符串。
+
+String的转换功能
+    byte[] getBytes():把字符串转换为字节数组
+    char[] toCharArray():把字符串转换为字符数组
+    static String valueOf(char[] chs):把字符数组转成字符串
+    static String valueOf(int i):把int类型的数据转成字符串
+        String类的valueOf方法可以把任意类型的数据转成字符串
+    String toLowerCase():把字符串转成小写
+    String toUpperCase():把字符串转成大写
+    String concat(String str):把字符串拼接
+
+String类的其他功能
+    替换功能：
+        String replace(char old,char new)
+        String replace(String old,String new)
+    去除字符串两空格
+        String trim()
+    按字典顺序比较两个字符串
+        int compareTo(String str)
+        int compareToIgnoreCase(String str)
+
+

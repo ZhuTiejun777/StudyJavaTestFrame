@@ -1,0 +1,33 @@
+public int hashCode()
+    返回该对象的哈希码值。默认情况下，该方法会根据对象的地址来计算。
+    不同对象的，hashCode()一般来说不会相同。但是，同一个对象的hashCode()值肯定相同。
+    不是对象的实际地址值，可以理解为逻辑地址值。
+
+public final Class getClass()
+    返回此 Object 的运行时类。
+    可以通过Class类中的一个方法，获取对象的真实类的全名称。
+        public String getName()：以 String 的形式返回此 Class 对象所表示的实体
+
+public String toString()
+    返回该对象的字符串表示。
+         //底层源码。
+        public static String valueOf(Object obj) {
+                 return (obj == null) ? "null" : obj.toString();
+            }
+        它的值等于：getClass().getName() + ‘@’ + Integer.toHexString(hashCode())
+        由于默认情况下的数据对我们来说没有意义，一般建议重写该方法。a:手动重写b:自动生成
+        注意：直接输出一个对象的名称，其实就是调用该对象的toString()方法。
+
+public boolean equals(Object obj)
+    指示其他某个对象是否与此对象“相等”。
+
+protected void finalize()
+    当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。
+    垃圾回收器不会马上回收垃圾，但是我们可以建议它尽快回收垃圾。(System.gc()方法)
+    主要针对堆内存。
+protected Object clone()
+    创建并返回此对象的一个副本，这种克隆机制十分高效，而且二者之间完全隔离。
+    自定义类实现克隆步骤：
+        自定义类实现Cloneable接口，这是一个标记性接口，实现这个接口的类的对象可以实现自我克隆。
+        自定义类中重写Object类的clone()方法。
+        重写clone()方法时通过super.clone()调用Object类的clone()方法来得到该对象的副本，并返回该副本。
