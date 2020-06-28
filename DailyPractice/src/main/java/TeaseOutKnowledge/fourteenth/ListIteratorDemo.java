@@ -28,7 +28,6 @@ public class ListIteratorDemo {
                 iterator.add("javaee");
             }
         }
-
         System.out.println("list:" + list);
     }
 }
