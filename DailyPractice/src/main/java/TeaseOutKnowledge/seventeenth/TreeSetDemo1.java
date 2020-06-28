@@ -13,7 +13,7 @@ import java.util.TreeSet;
  *      底层数据结构是红黑树(红黑树是一种自平衡的二叉树)
  */
 
-public class TreeSetDemo {
+public class TreeSetDemo1 {
 
     public static void main(String[] args) {
         // 创建集合对象

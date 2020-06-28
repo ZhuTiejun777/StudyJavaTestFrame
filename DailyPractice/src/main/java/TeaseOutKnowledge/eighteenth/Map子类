@@ -1,0 +1,19 @@
+HashMap
+    HashMap类概述
+        键是哈希表结构，可以保证键的唯一性
+    常用案例
+        HashMap< String,String>
+        HashMap< Integer,String>
+        HashMap< String,Student>
+        HashMap< Student,String>
+        上面的也不是非要是学生对象，可以是你需求的对象
+
+LinkedHashMap
+    概述
+        Map 接口的哈希表和链接列表实现，具有可预知的迭代顺序。
+        由哈希表保证键的唯一性，不可重复
+        由链表保证键盘的有序(存储和取出的顺序一致)
+
+TreeMap
+    概述
+        键是红黑树结构，可以保证键的排序和唯一性
