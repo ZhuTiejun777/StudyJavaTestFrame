@@ -21,7 +21,7 @@ package TeaseOutKnowledge.nineteenth;
  *      catch里面必须有内容，哪怕是给出一个简单的提示
  */
 
-public class ExceptiomDemo2 {
+public class ExceptionDemo2 {
 
     public static void main(String[] args) {
 

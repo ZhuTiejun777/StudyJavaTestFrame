@@ -1,0 +1,23 @@
+IO流概述
+    IO流用来处理设备之间的数据传输
+        上传文件和下载文件
+    Java对数据的操作是通过流的方式
+    Java用于操作流的对象都在IO包中
+
+IO流分类
+    按照数据流向
+        输入流 读取数据
+        输出流 写出数据
+    按照数据类型
+        字节流
+            字节输入流 读取数据 InputStream
+            字节输出流 写出数据 OutputStream
+        字符流
+            字符输入流 读取数据 Reader
+            字符输出流 写出数据 Writer
+
+IO流常用基类
+    字节流的抽象基类：
+        InputStream ，OutputStream。
+    字符流的抽象基类：
+        Reader ， Writer。
