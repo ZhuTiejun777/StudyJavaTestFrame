@@ -16,4 +16,5 @@ public class TestNG_Demo8 {
         // 抛出异常信息,不加的话就不会抛出异常信息
         assertion.assertAll();
     }
+    
 }

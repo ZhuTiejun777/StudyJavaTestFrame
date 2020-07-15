@@ -18,7 +18,7 @@ public class RestClientTest {
 
 
     //1. Get 请求方法
-    public void get(String url) throws ClientProtocolException, IOException {
+    public void get(String url) throws IOException {
 
         //创建一个可关闭的HttpClient对象
         CloseableHttpClient httpclient = HttpClients.createDefault();
