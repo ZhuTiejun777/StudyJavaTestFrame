@@ -22,6 +22,7 @@ public class userInfo {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("page", 1);
         jsonObject.put("size", 10);
+        // 发送json格式数据使用StringEntity实例化
         StringEntity stringEntity = new StringEntity(jsonObject.toString());
         stringEntity.setContentType("application/json");
         httpPost.setEntity(stringEntity);

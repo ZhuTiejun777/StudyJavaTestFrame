@@ -1,5 +1,6 @@
 package com.java.learn.restclient;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -26,7 +27,7 @@ public class CustSubaccountBalance {
         CloseableHttpResponse response = null;
         // 设置请求参数
         JSONObject obj = new JSONObject();
-        obj.put("custAcctId", "3294000000101887");
+        obj.put("custAcctId", "3294000000102488");
         // 关联请求参数
         StringEntity stringEntity = new StringEntity(obj.toString());
         // 设置请求编码
@@ -42,7 +43,7 @@ public class CustSubaccountBalance {
                 String content = EntityUtils.toString(response.getEntity(), "UTF-8");
                 System.out.println(content);
                 // string转化为json格式,Json字符串转换成JSONObject对象
-                JSONObject jsonObject=JSONObject.parseObject(content);
+                JSONObject jsonObject= JSON.parseObject(content);
                 JSONObject jsonObject1 = jsonObject.getJSONObject("payload");
                 String string = jsonObject1.getString("BodyMsg");
                 System.out.println(string.split("&")[1]);
