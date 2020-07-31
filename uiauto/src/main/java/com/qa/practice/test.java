@@ -12,7 +12,7 @@ public class test {
         System.out.println(map);
         System.out.println(map.keySet());
         System.out.println(map.values());
-        System.out.println(map.get(1));
+        System.out.println(map.get("b"));
         System.out.println();
         for (String key : map.keySet()) {
             System.out.println(map.get(key));

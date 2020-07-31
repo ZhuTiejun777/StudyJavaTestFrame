@@ -31,6 +31,8 @@ public class LOLSkinSpider {
             CloseableHttpResponse response = null;
             try {
                 response = client.execute(httpGet);
+                /*System.out.println(i);
+                System.out.println(response.getStatusLine().getStatusCode());*/
                 if (response.getStatusLine().getStatusCode() == 404) {
                     continue;
                 }

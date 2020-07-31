@@ -82,7 +82,34 @@ public class RestClient {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         //创建一个HttpPost的请求对象
         HttpPost httppost = new HttpPost(url);
-        //设置payload
+        //设置payload, 传入json格式数据
+        httppost.setEntity(new StringEntity(entityString));
+
+        //加载请求头到httppost对象
+        for(Map.Entry<String, String> entry : headermap.entrySet()) {
+            httppost.addHeader(entry.getKey(), entry.getValue());
+        }
+        //发送post请求
+        CloseableHttpResponse httpResponse = httpclient.execute(httppost);
+        Log.info("开始发送post请求");
+        return httpResponse;
+    }
+
+    /**
+     * 封装post方法
+     * @param url
+     * @param entityString，其实就是设置请求json参数
+     * @param headermap，带请求头
+     * @return 返回响应对象
+     * @throws ClientProtocolException
+     * @throws IOException
+     */
+    public CloseableHttpResponse postTest (String url, String entityString, HashMap<String,String> headermap) throws ClientProtocolException, IOException {
+        //创建一个可关闭的HttpClient对象
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        //创建一个HttpPost的请求对象
+        HttpPost httppost = new HttpPost(url);
+        //设置payload, 传入json格式数据
         httppost.setEntity(new StringEntity(entityString));
 
         //加载请求头到httppost对象
@@ -149,7 +176,6 @@ public class RestClient {
     }
 
     /**
-     *
      * @param response, 任何请求返回返回的响应对象
      * @return， 返回响应体的json格式对象，方便接下来对JSON对象内容解析
      * 接下来，一般会继续调用TestUtil类下的json解析方法得到某一个json对象的值

@@ -25,7 +25,7 @@ public class userInfo {
         // 发送json格式数据使用StringEntity实例化
         StringEntity stringEntity = new StringEntity(jsonObject.toString());
         stringEntity.setContentType("application/json");
-        httpPost.setEntity(stringEntity);
+        httpPost.setEntity(new StringEntity(jsonObject.toString()));
         CloseableHttpResponse response = null;
         try {
             response = client.execute(httpPost);

@@ -1,4 +1,4 @@
-package com.qa.restclient;
+package com.qa.practice;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;

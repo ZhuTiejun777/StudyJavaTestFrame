@@ -27,11 +27,10 @@ public class GetApiTest extends TestBase {
     public void setUp() {
 
         testBase = new TestBase();
-        //Log.info("测试服务器地址为："+ host.toString());
         host = prop.getProperty("HOST");
-        //Log.info("当前测试接口的完整地址为："+url.toString());
+        Log.info("测试服务器地址为："+ host.toString());
         url = host + "/api/users?page=2";
-
+        Log.info("当前测试接口的完整地址为："+url.toString());
     }
 
     @Test
@@ -56,6 +55,5 @@ public class GetApiTest extends TestBase {
         Assert.assertEquals(s, "Michael","first name is not Eve");
         Log.info("用例执行结束...");
     }
-
 
 }

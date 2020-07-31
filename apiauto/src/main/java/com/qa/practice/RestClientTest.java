@@ -1,4 +1,4 @@
-package com.qa.restclient;
+package com.qa.practice;
 
 import java.io.IOException;
 import java.util.HashMap;

@@ -1,8 +1,9 @@
 package com.qa.base;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -21,7 +22,6 @@ public class TestBase {
 
         final Logger Log = Logger.getLogger(TestBase.class);
         try {
-
             prop = new Properties();
             FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+ "/src/main/java/com/qa/config/config.properties");
             prop.load(fis);
@@ -32,6 +32,5 @@ public class TestBase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
