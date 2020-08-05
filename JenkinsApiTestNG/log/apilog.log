@@ -1,0 +1,190 @@
+2020-08-05 11:06:18 166 INFO  TestBase:23 - 正在读取配置文件...
+2020-08-05 11:06:18 224 INFO  TestBase:23 - 正在读取配置文件...
+2020-08-05 11:06:18 481 INFO  TestApiReadXls:41 - 执行用例:Y
+2020-08-05 11:06:18 481 INFO  TestApiReadXls:42 - Title: 虚拟账户余额查询
+2020-08-05 11:06:18 482 INFO  TestApiReadXls:43 - Method :post
+2020-08-05 11:06:19 278 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:19 283 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:19 339 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000037057"}
+2020-08-05 11:06:19 731 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:19 732 INFO  TestUtil:80 - Result: result=ETCZJ888888&15478.36&12288.00&0.00&
+2020-08-05 11:06:19 738 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ888888&15478.36&12288.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:19 784 INFO  TestApiReadXls:50 - Response Code: 200
+2020-08-05 11:06:19 785 INFO  TestApiReadXls:51 - Assert: ETCZJ888888&15478.36&12288.00&0.00& and ETCZJ888888&15478.36&12288.00&0.00&
+2020-08-05 11:06:19 793 INFO  TestApiReadXls:41 - 执行用例:Y
+2020-08-05 11:06:19 793 INFO  TestApiReadXls:42 - Title: 虚拟账户余额查询
+2020-08-05 11:06:19 794 INFO  TestApiReadXls:43 - Method :post
+2020-08-05 11:06:19 797 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:19 797 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:19 797 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000102488"}
+2020-08-05 11:06:20 107 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:20 109 INFO  TestUtil:80 - Result: result=ETCZJ001395&118150.89&0.00&0.00&
+2020-08-05 11:06:20 111 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ001395&117975.89&0.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:20 112 INFO  TestApiReadXls:50 - Response Code: 200
+2020-08-05 11:06:20 112 INFO  TestApiReadXls:51 - Assert: ETCZJ001395&117975.89&0.00&0.00& and ETCZJ001395&118150.89&0.00&0.00&
+2020-08-05 11:06:20 122 INFO  TestApiReadXls:41 - 执行用例:Y
+2020-08-05 11:06:20 123 INFO  TestApiReadXls:42 - Title: 虚拟账户余额查询
+2020-08-05 11:06:20 123 INFO  TestApiReadXls:43 - Method :post
+2020-08-05 11:06:20 125 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:20 126 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:20 126 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000224458"}
+2020-08-05 11:06:20 309 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:20 310 INFO  TestUtil:80 - Result: result=ETCZJ013548&4711.00&0.00&0.00&
+2020-08-05 11:06:20 311 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ013548&4711.00&0.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:20 312 INFO  TestApiReadXls:50 - Response Code: 200
+2020-08-05 11:06:20 313 INFO  TestApiReadXls:51 - Assert: ETCZJ013548&4711.00&0.00&0.00& and ETCZJ013548&4711.00&0.00&0.00&
+2020-08-05 11:06:20 317 INFO  TestApiReadXls:41 - 执行用例:Y
+2020-08-05 11:06:20 318 INFO  TestApiReadXls:42 - Title: 虚拟账户余额查询
+2020-08-05 11:06:20 319 INFO  TestApiReadXls:43 - Method :post
+2020-08-05 11:06:20 322 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:20 323 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:20 324 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000102787"}
+2020-08-05 11:06:20 530 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:20 531 INFO  TestUtil:80 - Result: result=ETCZJ001415&1429.00&0.00&0.00&
+2020-08-05 11:06:20 532 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ001415&1429.00&0.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:20 533 INFO  TestApiReadXls:50 - Response Code: 200
+2020-08-05 11:06:20 534 INFO  TestApiReadXls:51 - Assert: ETCZJ001415&1429.00&0.00&0.00& and ETCZJ001415&1429.00&0.00&0.00&
+2020-08-05 11:06:20 675 INFO  TestApiReadXls:68 - 执行用例:Y
+2020-08-05 11:06:20 676 INFO  TestApiReadXls:70 - Title: 虚拟账户余额查询
+2020-08-05 11:06:20 676 INFO  TestApiReadXls:71 - Method :post
+2020-08-05 11:06:20 679 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:20 680 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:20 680 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000037057"}
+2020-08-05 11:06:20 890 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:20 891 INFO  TestUtil:80 - Result: result=ETCZJ888888&15478.36&12288.00&0.00&
+2020-08-05 11:06:20 891 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ888888&15478.36&12288.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:20 893 INFO  TestApiReadXls:75 - Response Code: 200
+2020-08-05 11:06:20 893 INFO  TestApiReadXls:76 - Assert: ETCZJ888888&15478.36&12288.00&0.00& and ETCZJ888888&15478.36&12288.00&0.00&
+2020-08-05 11:06:20 895 INFO  TestApiReadXls:68 - 执行用例:Y
+2020-08-05 11:06:20 895 INFO  TestApiReadXls:70 - Title: 虚拟账户余额查询
+2020-08-05 11:06:20 896 INFO  TestApiReadXls:71 - Method :post
+2020-08-05 11:06:20 899 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:20 900 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:20 900 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000102488"}
+2020-08-05 11:06:21 096 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:21 102 INFO  TestUtil:80 - Result: result=ETCZJ001395&118150.89&0.00&0.00&
+2020-08-05 11:06:21 103 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ001395&117975.89&0.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:21 104 INFO  TestApiReadXls:75 - Response Code: 200
+2020-08-05 11:06:21 104 INFO  TestApiReadXls:76 - Assert: ETCZJ001395&117975.89&0.00&0.00& and ETCZJ001395&118150.89&0.00&0.00&
+2020-08-05 11:06:21 116 INFO  TestApiReadXls:68 - 执行用例:Y
+2020-08-05 11:06:21 117 INFO  TestApiReadXls:70 - Title: 虚拟账户余额查询
+2020-08-05 11:06:21 117 INFO  TestApiReadXls:71 - Method :post
+2020-08-05 11:06:21 120 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:21 121 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:21 122 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000224458"}
+2020-08-05 11:06:21 374 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:21 375 INFO  TestUtil:80 - Result: result=ETCZJ013548&4711.00&0.00&0.00&
+2020-08-05 11:06:21 376 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ013548&4711.00&0.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:21 377 INFO  TestApiReadXls:75 - Response Code: 200
+2020-08-05 11:06:21 377 INFO  TestApiReadXls:76 - Assert: ETCZJ013548&4711.00&0.00&0.00& and ETCZJ013548&4711.00&0.00&0.00&
+2020-08-05 11:06:21 378 INFO  TestApiReadXls:70 - Title: 虚拟账户余额查询
+2020-08-05 11:06:21 378 INFO  TestApiReadXls:71 - Method :post
+2020-08-05 11:06:21 381 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:21 381 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:21 382 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000102219"}
+2020-08-05 11:06:21 617 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:21 618 INFO  TestUtil:80 - Result: result=ETCZJ001381&10000.00&0.00&0.00&
+2020-08-05 11:06:21 619 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ001381&10000.00&0.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:21 619 INFO  TestApiReadXls:75 - Response Code: 200
+2020-08-05 11:06:21 620 INFO  TestApiReadXls:76 - Assert: ETCZJ001381&10000.00&0.00&0.00& and ETCZJ001381&10000.00&0.00&0.00&
+2020-08-05 11:06:21 621 INFO  TestApiReadXls:68 - 执行用例:Y
+2020-08-05 11:06:21 621 INFO  TestApiReadXls:70 - Title: 虚拟账户余额查询
+2020-08-05 11:06:21 622 INFO  TestApiReadXls:71 - Method :post
+2020-08-05 11:06:21 624 INFO  RestClientXls:23 - http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance
+2020-08-05 11:06:21 628 INFO  RestClientXls:28 - Add Header: Content-Type=application/json
+2020-08-05 11:06:21 629 INFO  RestClientXls:35 - Resqust Param: {"custAcctId":"3294000000102787"}
+2020-08-05 11:06:21 861 INFO  TestUtil:80 - Result: statuscode=200
+2020-08-05 11:06:21 862 INFO  TestUtil:80 - Result: result=ETCZJ001415&1429.00&0.00&0.00&
+2020-08-05 11:06:21 863 INFO  TestUtil:62 - Response Param: {
+	"msg":"成功",
+	"payload":{
+		"TranFunc":"6093",
+		"BodyMsg":"ETCZJ001415&1429.00&0.00&0.00&",
+		"RspMsg":"交易成功",
+		"RspCode":"000000",
+		"RspMsgBak":"交易成功                                                                                            "
+	},
+	"state":"1"
+}
+2020-08-05 11:06:21 864 INFO  TestApiReadXls:75 - Response Code: 200
+2020-08-05 11:06:21 865 INFO  TestApiReadXls:76 - Assert: ETCZJ001415&1429.00&0.00&0.00& and ETCZJ001415&1429.00&0.00&0.00&
