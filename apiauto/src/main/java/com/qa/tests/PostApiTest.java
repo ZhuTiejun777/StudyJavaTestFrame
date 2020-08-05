@@ -64,6 +64,7 @@ public class PostApiTest extends TestBase {
         System.out.println(responseString);
         System.out.println(id + ":" +string + ":" + balance);
         System.out.println(Double.parseDouble(balance) - Double.parseDouble(string));
+        Assert.assertEquals(string,balance);
         /*Assert.assertEquals(string, balance, "Are equal in amount");*/
         /*String name = TestUtil.getValueByJPath(responseJson, "name");
         String job = TestUtil.getValueByJPath(responseJson, "job");*/

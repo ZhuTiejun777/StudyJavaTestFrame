@@ -26,6 +26,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.qa.util.TestUtil.readpath;
+import static com.qa.util.TestUtil.readresult;
+
 public class TestApiReadXls extends TestBase {
 
     TestBase testBase;
@@ -45,7 +48,58 @@ public class TestApiReadXls extends TestBase {
     }
 
     @Test(dataProvider = "testxlsdata")
+    public void readXlsApiTest (String run, String title, String method, String url, String header, String param, String path, String result) throws IOException {
+        CloseableHttpResponse response = null;
+        if (run.equals("Y")) {
+            Log.info("执行用例:" + run);
+            Log.info("Title: " + title);
+            Log.info("Method :" + method);
+            if (method.equals("get")) {
+                System.out.println("get");
+            } else if (method.equals("post")) {
+                response = restClientXls.post(host+url , header, param);
+                Map<String, String> resultMap = readresult(result);
+                String assertResult = readpath(response, path);
+                Log.info("Response Code: " + response.getStatusLine().getStatusCode());
+                Log.info("Assert: " + assertResult + " and " + resultMap.get("result"));
+                Assert.assertEquals(response.getStatusLine().getStatusCode(), Integer.parseInt(resultMap.get("statuscode")));
+                Assert.assertEquals(assertResult, resultMap.get("result"));
+            } else if (method.equals("put")) {
+                System.out.println("put");
+            } else if (method.equals("delete")) {
+                System.out.println("delete");
+            }
+        } else {
+            System.out.println("跳过用例执行:" + title);
+        }
+    }
+
+
+    @Test(dataProvider = "testxlsdata")
     public void readXlsPostApiTest (String run, String title, String method, String url, String header, String param, String path, String result) throws IOException {
+        if (run.equals("Y")) {
+            Log.info("执行用例:" + run);
+        }
+        Log.info("Title: " + title);
+        Log.info("Method :" + method);
+        CloseableHttpResponse response = restClientXls.post(host+url , header, param);
+        Map<String, String> resultMap = readresult(result);
+        String assertResult = readpath(response, path);
+        Log.info("Response Code: " + response.getStatusLine().getStatusCode());
+        Log.info("Assert: " + assertResult + " and " + resultMap.get("result"));
+        Assert.assertEquals(response.getStatusLine().getStatusCode(), Integer.parseInt(resultMap.get("statuscode")));
+        Assert.assertEquals(assertResult, resultMap.get("result"));
+    }
+
+
+    @DataProvider(name = "testxlsdata")
+    public Object[][] testreadxls () throws IOException, BiffException {
+        return TestUtil.readxls(".//data//TestData.xls");
+    }
+
+
+    @Test(dataProvider = "testxlsdata")
+    public void ApiTest (String run, String title, String method, String url, String header, String param, String path, String result) throws IOException {
         /*System.out.println(run);
         System.out.println(title);
         System.out.println(method);
@@ -92,25 +146,25 @@ public class TestApiReadXls extends TestBase {
         post.setEntity(new StringEntity(stringParam));*/
 
         CloseableHttpResponse response = restClientXls.post(host+url , header, param);
+
         // 处理result字段,获取断言
-        Map<String,String> maps = new HashMap<String, String>();
+        /*Map<String,String> maps = new HashMap<String, String>();
         for (String string : result.replaceAll("\n", "").split(";")) {
             maps.put(string.split("=")[0], string.split("=")[1]);
             Log.info("Result: " + string.split("=")[0] + "=" + string.split("=")[1]);
-        }
-        String content = EntityUtils.toString(response.getEntity(), "UTF-8");
+        }*/
+        Map<String, String> maps = readresult(result);
+
+        /*String content = EntityUtils.toString(response.getEntity(), "UTF-8");
         Log.info("Response Param: " + content);
         JSONObject object = JSON.parseObject(content);
-        String balance = object.getJSONObject("payload").getString("BodyMsg").split("&")[1];
+        String balance = object.getJSONObject("payload").getString("BodyMsg").split("&")[1];*/
+        String balance = readpath(response, path);
         Log.info("Response Code: " + response.getStatusLine().getStatusCode());
         Log.info("Assert: " + balance + " and " + maps.get("balance"));
         Assert.assertEquals(response.getStatusLine().getStatusCode(), Integer.parseInt(maps.get("statuscode")));
         Assert.assertEquals(balance, maps.get("balance"));
     }
 
-    @DataProvider(name = "testxlsdata")
-    public Object[][] testreadxls () throws IOException, BiffException {
-        return TestUtil.readxls(".//data//TestData.xls");
-    }
 
 }
