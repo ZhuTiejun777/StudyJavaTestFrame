@@ -20,13 +20,14 @@ public class test {
 
     public static void main(String[] args) throws IOException, BiffException {
 
-        Workbook book = Workbook.getWorkbook(new File(".//data//MemberTestData.xls"));
+
+        /*Workbook book = Workbook.getWorkbook(new File(".//data//MemberTestData.xls"));
         Sheet sheet = book.getSheet("Sheet1");
         String s = sheet.getCell(5, 2).getContents();
         System.out.println(s);
         JSONObject object = JSON.parseObject(s);
         System.out.println(object);
-        book.close();
+        book.close();*/
 
         /*String strings = "{\"customerName\":\"\"";
         String string = strings.replaceAll("\"\"", "\" \"");
@@ -64,10 +65,10 @@ public class test {
         httpPost.setEntity(new StringEntity(object.toString(), "UTF-8"));
         CloseableHttpResponse response = client.execute(httpPost);
         System.out.println(response.getStatusLine().getStatusCode());
-        Object obj = JSON.parseObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
-        //JSONObject jsonObject = JSON.parseObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
-        System.out.println(((JSONObject) ((JSONObject) obj).get("payload")).get("count").toString());
-        //System.out.println(jsonObject.getJSONObject("payload").getString("count"));
+        //Object obj = JSON.parseObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
+        JSONObject jsonObject = JSON.parseObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
+        //System.out.println(((JSONObject) ((JSONObject) obj).get("payload")).get("count").toString());
+        System.out.println(jsonObject.getJSONObject("payload").getString("count"));
         //String s = ((JSONObject) ((JSONObject) obj).get("payload")).get("count").toString();*/
     }
 }
