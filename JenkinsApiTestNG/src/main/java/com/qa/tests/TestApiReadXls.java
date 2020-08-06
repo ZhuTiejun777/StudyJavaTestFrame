@@ -1,6 +1,5 @@
 package com.qa.tests;
 
-import com.qa.assertion.Assertion;
 import com.qa.base.TestBase;
 import com.qa.restclient.RestClientXls;
 import com.qa.util.TestUtil;
@@ -44,6 +43,7 @@ public class TestApiReadXls extends TestBase {
             if (method.equals("get")) {
                 System.out.println("get");
             } else if (method.equals("post")) {
+                // TODO
                 response = restClientXls.post(host+url , header, param);
                 Map<String, String> resultMap = readresult(result);
                 String assertResult = readpath(response, path);
@@ -69,6 +69,7 @@ public class TestApiReadXls extends TestBase {
         }
         Log.info("Title: " + title);
         Log.info("Method :" + method);
+        // TODO
         CloseableHttpResponse response = restClientXls.post(host+url , header, param);
         Map<String, String> resultMap = readresult(result);
         String assertResult = readpath(response, path);

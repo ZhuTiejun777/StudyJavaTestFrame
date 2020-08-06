@@ -1,5 +1,6 @@
 package com.qa.restclient;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.qa.util.TestUtil;
 import org.apache.http.HttpEntity;
@@ -28,10 +29,7 @@ public class RestClientXls {
             Log.info("Add Header: " + string.split("\"")[1] + "=" + string.split("\"")[3]);
         }
         // 处理param字段,添加请求数据,json格式
-        JSONObject objectParam =new JSONObject();
-        for (String string : param.split(";")) {
-            objectParam.put(string.split("\"")[1], string.split("\"")[3]);
-        }
+        JSONObject objectParam = JSON.parseObject(param);
         Log.info("Resqust Param: " + objectParam.toString());
         StringEntity stringEntity = new StringEntity(objectParam.toString());
         // 设置请求编码

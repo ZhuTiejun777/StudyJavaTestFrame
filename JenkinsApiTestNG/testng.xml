@@ -4,6 +4,7 @@
     <test name="Java_Learn">
         <classes>
             <class name="com.qa.tests.TestApiReadXls"/>
+            <class name="com.qa.tests.MemberTestApi"/>
         </classes>
     </test> <!-- Java_Learn -->
 </suite> <!-- Default Suite -->
