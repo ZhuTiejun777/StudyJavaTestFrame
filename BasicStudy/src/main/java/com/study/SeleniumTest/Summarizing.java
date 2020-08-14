@@ -170,6 +170,11 @@ public class Summarizing {
             System.out.println(e.getMessage());
         }
 
+        // 关闭当前界面
+        driver.quit();
+        // 退出浏览器驱动
+        driver.close();
+
         // 正则匹配
         String re = "[\\d]+";
         Pattern retest = Pattern.compile("String");
