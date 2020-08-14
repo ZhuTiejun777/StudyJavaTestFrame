@@ -20,16 +20,6 @@ public class test {
 
     public static void main(String[] args) throws IOException, BiffException {
 
-        /*//String string = "ssssss";
-        CloseableHttpClient client = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("https://www.baidu.com");
-        //StringEntity stringEntity = new StringEntity(string);
-        //httpPost.setEntity(stringEntity);
-        CloseableHttpResponse response = client.execute(httpPost);
-        System.out.println(EntityUtils.toString(response.getEntity(), "UTF-8"));
-        //JSONObject jsonObject = JSON.parseObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
-        //System.out.println(jsonObject);*/
-
         /*Workbook book = Workbook.getWorkbook(new File(".//data//MemberTestData.xls"));
         Sheet sheet = book.getSheet("Sheet1");
         String s = sheet.getCell(5, 2).getContents();
@@ -73,11 +63,11 @@ public class test {
         object.put("totalPage", "1");
         httpPost.setEntity(new StringEntity(object.toString(), "UTF-8"));
         CloseableHttpResponse response = client.execute(httpPost);
-        System.out.println(response.getStatusLine().getStatusCode());
+        System.out.println(response.getStatusLine().getStatusCode());*/
         //Object obj = JSON.parseObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
-        JSONObject jsonObject = JSON.parseObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
+        //JSONObject jsonObject = JSON.parseObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
         //System.out.println(((JSONObject) ((JSONObject) obj).get("payload")).get("count").toString());
-        System.out.println(jsonObject.getJSONObject("payload").getString("count"));
-        //String s = ((JSONObject) ((JSONObject) obj).get("payload")).get("count").toString();*/
+        //System.out.println(jsonObject.getJSONObject("payload").getString("count"));
+        //String s = ((JSONObject) ((JSONObject) obj).get("payload")).get("count").toString();
     }
 }
