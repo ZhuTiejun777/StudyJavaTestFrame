@@ -3,6 +3,7 @@ package com.qa.util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.jayway.jsonpath.JsonPath;
 import com.qa.restclient.RestClient;
 import jxl.Cell;
 import jxl.Sheet;
@@ -85,6 +86,13 @@ public class TestUtil {
         book.close();
         return objects;
     }
+
+    public static String readjsonpath(CloseableHttpResponse response, String path) throws IOException {
+        String content = EntityUtils.toString(response.getEntity(), "UTF-8");
+        Log.info("Response Param: " + content);
+        return JsonPath.read(content, path.split("=")[1]);
+    }
+
 
     public static String readpath(CloseableHttpResponse response, String path) throws IOException {
         String content = EntityUtils.toString(response.getEntity(), "UTF-8");

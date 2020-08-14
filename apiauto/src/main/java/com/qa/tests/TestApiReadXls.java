@@ -26,10 +26,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.qa.util.TestUtil.readpath;
-import static com.qa.util.TestUtil.readresult;
+import static com.qa.util.TestUtil.*;
 
 public class TestApiReadXls extends TestBase {
+
+    Map<String, String> globalvariable;
 
     TestBase testBase;
     String host;
@@ -41,6 +42,7 @@ public class TestApiReadXls extends TestBase {
         testBase = new TestBase();
         host = prop.getProperty("HOST");
         restClientXls = new RestClientXls();
+        globalvariable = null;
     }
 
     @AfterClass
@@ -84,7 +86,8 @@ public class TestApiReadXls extends TestBase {
         Log.info("Method :" + method);
         CloseableHttpResponse response = restClientXls.post(host+url , header, param);
         Map<String, String> resultMap = readresult(result);
-        String assertResult = readpath(response, path);
+        //String assertResult = readpath(response, path);
+        String assertResult = readjsonpath(response, path);
         Log.info("Response Code: " + response.getStatusLine().getStatusCode());
         Log.info("Assert: " + assertResult + " and " + resultMap.get("result"));
         Assert.assertEquals(response.getStatusLine().getStatusCode(), Integer.parseInt(resultMap.get("statuscode")));

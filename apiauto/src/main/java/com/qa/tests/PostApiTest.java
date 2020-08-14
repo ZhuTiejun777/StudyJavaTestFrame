@@ -76,12 +76,10 @@ public class PostApiTest extends TestBase {
     }
 
 
-
     @DataProvider(name = "custacctid")
     public Object[][] custacctid () throws IOException {
         return TestUtil.readcsv(".//data//custacctid.csv");
     }
-
 
 
     /*@DataProvider(name = "custacctid")
