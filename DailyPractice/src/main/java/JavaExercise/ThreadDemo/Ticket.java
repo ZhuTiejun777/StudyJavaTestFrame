@@ -4,7 +4,7 @@ public class Ticket extends Thread{
 
     private static int tickets = 1000;
 
-    private static Object object = new Object();
+    private static final Object object = new Object();
 
     public void run () {
         while (true) {
