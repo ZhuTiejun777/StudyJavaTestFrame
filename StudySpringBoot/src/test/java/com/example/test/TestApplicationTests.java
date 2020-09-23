@@ -35,7 +35,6 @@ public class TestApplicationTests {
         assert result == 1;
     }*/
 
-
     @Test
     public void getName () {
         String name = testService.getName(1);
