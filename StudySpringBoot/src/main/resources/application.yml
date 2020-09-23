@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://192.168.3.235:3306/pnh?useSSL=false #useSSL=false配置取消报错信息
+    username: pnh
+    password: Pnh1104
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #配置映射文件
+  type-aliases-package: com.example.test.bean #配置实体类
