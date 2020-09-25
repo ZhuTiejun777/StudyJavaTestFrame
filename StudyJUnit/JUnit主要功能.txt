@@ -1,0 +1,9 @@
+1.断言（英文叫Asserts）
+2.测试启动和关闭（Test setup and teardown）
+3.异常测试
+4.测试套件（Test Suites）
+5.参数化测试（Parameterized Test）
+6.假设(Assumptions)
+7.规则(Rules)
+8.理论（Theories）
+9.和其他流行的构建系统的集成
