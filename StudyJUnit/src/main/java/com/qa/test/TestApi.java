@@ -24,19 +24,21 @@ public class TestApi {
         HttpPost httpPost = new HttpPost(url);
         httpPost.setHeader("Content-Type", "application/json");
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("custAcctId", "3294000000102488");
+        jsonObject.put("custAcctId", "3294000000037057");
         StringEntity stringEntity = new StringEntity(jsonObject.toString());
         httpPost.setEntity(stringEntity);
         CloseableHttpResponse response = client.execute(httpPost);
-        System.out.println(response.getStatusLine().getStatusCode());
+        //System.out.println(response.getStatusLine().getStatusCode());
         /*String string = response.getEntity().toString();
         System.out.println(string);*/
         String responseString = EntityUtils.toString(response.getEntity(), "UTF-8");
-        System.out.println(responseString);
+        //System.out.println(responseString);
         JSONObject responsejson = JSON.parseObject(responseString);
-        System.out.println(responsejson);
+        //System.out.println(responsejson);
         String jsonpath = "$.payload.BodyMsg";
         String result = JSONPath.read(responseString, jsonpath).toString();
-        System.out.println(result);
+        // --8475.14  --8300.14  --8001.14  --7878.54  --7353.54 --7003.54
+        System.out.println(result.split("&")[2]);
+        //System.out.println(result);
     }
 }
