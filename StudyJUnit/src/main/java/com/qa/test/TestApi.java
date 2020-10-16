@@ -37,7 +37,7 @@ public class TestApi {
         //System.out.println(responsejson);
         String jsonpath = "$.payload.BodyMsg";
         String result = JSONPath.read(responseString, jsonpath).toString();
-        // --8475.14  --8300.14  --8001.14  --7878.54  --7353.54 --7003.54
+        // --8475.14 --8300.14 --8001.14 --7878.54 --7353.54 --7003.54 --6004.54
         System.out.println(result.split("&")[2]);
         //System.out.println(result);
     }
