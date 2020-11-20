@@ -5,6 +5,7 @@
         <classes>
             <class name="com.qa.tests.TestApiReadXls"/>
             <class name="com.qa.tests.MemberTestApi"/>
+            <class name="com.qa.experiment.CustomParameterSettings"/>
         </classes>
     </test> <!-- Java_Learn -->
 </suite> <!-- Default Suite -->

@@ -1,4 +1,4 @@
-package com.qa;
+package com.qa.attempt;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -25,7 +25,9 @@ import java.util.*;
 public class test {
     public static void main(String[] args) throws IOException, BiffException {
 
-        CloseableHttpClient client = HttpClients.createDefault();
+
+
+        /*CloseableHttpClient client = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("http://192.168.1.18:8088/bankApi/queryCustSubaccountBalance");
         JSONObject obj = new JSONObject();
         obj.put("custAcctId", "3294000000102488");
@@ -39,7 +41,7 @@ public class test {
         //JSONObject jsonObject= JSON.parseObject(content);
         String jsonpath = "$.payload.BodyMsg";
         String BodyMsg = JsonPath.read(content, jsonpath);
-        System.out.println(BodyMsg);
+        System.out.println(BodyMsg);*/
         /*JSONObject jsonObject1 = jsonObject.getJSONObject("payload");
         String string = jsonObject1.getString("BodyMsg");
         System.out.println(string.split("&")[1]);
