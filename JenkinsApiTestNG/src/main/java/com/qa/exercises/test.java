@@ -15,10 +15,16 @@ import org.apache.http.util.EntityUtils;
 import javax.swing.text.html.parser.Entity;
 import java.io.File;
 import java.io.IOException;
+import java.text.MessageFormat;
 
 public class test {
 
     public static void main(String[] args) throws IOException, BiffException {
+
+        /*String string = String.format("name=%s, age=%d", "huhx", 25);
+        String message = MessageFormat.format("name={1}, age={0}, {1}", 25, "huhx");
+        System.out.println(string);
+        System.out.println(message);*/
 
         /*Workbook book = Workbook.getWorkbook(new File(".//data//MemberTestData.xls"));
         Sheet sheet = book.getSheet("Sheet1");
