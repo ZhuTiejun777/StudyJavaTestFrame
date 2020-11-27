@@ -1,20 +1,20 @@
-2020-11-20 17:45:58 446 INFO  TestBase:23 - 正在读取配置文件...
-2020-11-20 17:45:58 539 INFO  TestBase:23 - 正在读取配置文件...
-2020-11-20 17:45:58 972 INFO  MemberTestApi:46 - Title: 虚拟账户查询
-2020-11-20 17:46:00 604 INFO  RestClientXls:47 - http://192.168.1.18:8088/bankApi/querySubaccountBalance
-2020-11-20 17:46:00 609 INFO  RestClientXls:52 - Add Header: Content-Type=application/json
-2020-11-20 17:46:00 732 INFO  RestClientXls:57 - Resqust Param: {"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
-2020-11-20 17:46:01 036 INFO  MemberTestApi:48 - Response Code: 200
-2020-11-20 17:46:01 037 INFO  TestUtil:89 - Result: statuscode=200
-2020-11-20 17:46:01 037 INFO  TestUtil:89 - Result: result=成功
-2020-11-20 17:46:01 040 INFO  TestUtil:65 - Response Param: {
+2020-11-25 18:02:17 287 INFO  TestBase:23 - 正在读取配置文件...
+2020-11-25 18:02:17 385 INFO  TestBase:23 - 正在读取配置文件...
+2020-11-25 18:02:17 743 INFO  MemberTestApi:49 - Title: 虚拟账户查询
+2020-11-25 18:02:19 181 INFO  RestClientXls:47 - http://192.168.1.18:8088/bankApi/querySubaccountBalance
+2020-11-25 18:02:19 188 INFO  RestClientXls:52 - Add Header: Content-Type=application/json
+2020-11-25 18:02:19 282 INFO  RestClientXls:57 - Resqust Param: {"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
+2020-11-25 18:02:19 561 INFO  MemberTestApi:54 - Response Code: 200
+2020-11-25 18:02:19 561 INFO  TestUtil:89 - Result: statuscode=200
+2020-11-25 18:02:19 562 INFO  TestUtil:89 - Result: result=成功
+2020-11-25 18:02:19 565 INFO  TestUtil:65 - Response Param: {
 	"msg":"成功",
 	"payload":{
 		"Reserve":"",
 		"TranFunc":"6010",
-		"BodyMsg":"1&1&1&1&3294000000102488&1&ETCZJ001395&&84428.25&74326.25&20191212&&",
+		"BodyMsg":"1&1&1&1&3294000000102488&1&ETCZJ001395&&74078.25&63976.25&20191212&&",
 		"TotalCount":"1",
-		"ArrayContent":"3294000000102488&1&ETCZJ001395&&84428.25&74326.25&20191212",
+		"ArrayContent":"3294000000102488&1&ETCZJ001395&&74078.25&63976.25&20191212",
 		"RspMsg":"交易成功",
 		"RspCode":"000000",
 		"RspMsgBak":"交易成功                                                                                            ",
@@ -24,5 +24,5 @@
 	},
 	"state":"1"
 }
-2020-11-20 17:46:01 133 INFO  MemberTestApi:51 - Assert: 成功 and 成功
-2020-11-20 17:46:01 133 INFO  MemberTestApi:52 - ssss
+2020-11-25 18:02:19 641 INFO  MemberTestApi:59 - Assert: 成功 and 成功
+2020-11-25 18:02:19 641 INFO  MemberTestApi:60 - ssss

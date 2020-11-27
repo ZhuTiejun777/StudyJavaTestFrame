@@ -14,6 +14,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.qa.util.TestUtil.readpath;
@@ -45,6 +47,8 @@ public class CustomParameterSettings extends TestBase{
         CloseableHttpResponse response = null;
         if (run.equals("Y") && method.equals("post")) {
             Log.info("Title: " + title);
+            // System.out.println(param);
+            // String paramstring = MessageFormat.format(param, global);
             // 发送请求
             response = restClientXls.postCookie(host + url, header, param, cookie);
             Log.info("Response Code: " + response.getStatusLine().getStatusCode());
