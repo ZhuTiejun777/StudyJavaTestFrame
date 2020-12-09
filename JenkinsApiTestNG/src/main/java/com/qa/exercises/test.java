@@ -23,10 +23,10 @@ public class test {
 
         String param = "{\"custAcctId\":\"{0}\",\"selectFlag\":\"2\",\"pageNum\":1}";
         String global = "ssss";
-        String paramstring = MessageFormat.format(param, global);
+        // String paramstring = MessageFormat.format(param, global);
         String paramstrings = param.replace("{0}", global);
         System.out.println(paramstrings);
-        System.out.println(paramstring);
+        //System.out.println(paramstring);
 
         /*String string = String.format("name=%s, age=%d", "huhx", 25);
         String message = MessageFormat.format("name={1}, age={0}, {1}", 25, "huhx");
