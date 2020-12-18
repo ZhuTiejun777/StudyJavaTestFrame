@@ -1,0 +1,1 @@
+https://github.com/RookieTester/rest-assured-doc/blob/master/2016-12-12-%E3%80%90%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E3%80%91rest-assured%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C%E4%B8%AD%E6%96%87%E7%89%88.markdown#JSON(%E4%BD%BF%E7%94%A8JsonPath)

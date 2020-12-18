@@ -3,12 +3,8 @@
 <suite name="Default Suite">
     <test name="Java_Learn">
         <classes>
-            <class name="com.qa.tests.BasicFeatures"/>
-            <class name="com.qa.tests.BasicFeaturesContentType"/>
-            <class name="com.qa.tests.BasicFeaturesPost"/>
-            <class name="com.qa.tests.BasicFeaturesXML"/>
-            <class name="com.qa.tests.getHeaderCookie"/>
             <class name="com.qa.tests.testGet"/>
+            <class name="com.qa.tests.BasicFeatures"/>
         </classes>
     </test> <!-- Java_Learn -->
 </suite> <!-- Default Suite -->
