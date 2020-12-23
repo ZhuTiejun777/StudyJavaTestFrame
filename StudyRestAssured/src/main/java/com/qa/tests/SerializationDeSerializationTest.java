@@ -1,5 +1,6 @@
 package com.qa.tests;
 
+import com.qa.base.TestBase;
 import io.restassured.RestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
@@ -106,5 +107,10 @@ public class SerializationDeSerializationTest {
         System.out.println(userResponse.getMsg());
         Assert.assertEquals(userResponse.getState(), "1");
 
+    }
+
+    @Test
+    public void testConfig () {
+        System.out.println(TestBase.host);
     }
 }

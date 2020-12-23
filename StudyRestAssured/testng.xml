@@ -3,8 +3,7 @@
 <suite name="Default Suite">
     <test name="Java_Learn">
         <classes>
-            <class name="com.qa.tests.testGet"/>
-            <class name="com.qa.tests.BasicFeatures"/>
+            <class name="com.qa.cases.TestDemo"/>
         </classes>
     </test> <!-- Java_Learn -->
 </suite> <!-- Default Suite -->
