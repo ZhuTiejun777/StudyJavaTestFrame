@@ -26,8 +26,8 @@ public class MemberTestApi extends TestBase {
     @BeforeClass
     public void beforeclass() {
         testBase = new TestBase();
-        host = prop.getProperty("MEMBER_HOST");
-        cookie = prop.getProperty("COOKIE");
+        //host = prop.getProperty("MEMBER_HOST");
+        //cookie = prop.getProperty("COOKIE");
         restClientXls = new RestClientXls();
     }
 

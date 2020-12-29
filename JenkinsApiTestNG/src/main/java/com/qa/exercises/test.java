@@ -2,30 +2,83 @@ package com.qa.exercises;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.qa.base.TestBase;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import javax.swing.text.html.parser.Entity;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class test {
+public class test extends TestBase {
+
+    /*public String testres (String string) {
+        return getCommonParam(string);
+    }*/
+
+    @Test
+    public void test01 () {
+
+    }
 
     public static void main(String[] args) throws IOException, BiffException {
+
+        //test test = new test();
+        // Pattern replaceParamPattern = Pattern.compile("\\$\\{(.*?)\\}");
+        Workbook workbook = Workbook.getWorkbook(new File(".//data//TestFormat.xls"));
+        Sheet sheet = workbook.getSheet("Sheet1");
+        System.out.println(sheet.getCell(5,1).getContents());
+        String result = sheet.getCell(5,1).getContents();
+        Pattern replaceParamPattern = Pattern.compile("A(.*?)I");
+        //Pattern replaceParamPattern = Pattern.compile("$\\{(.*?)\\}");
+        Matcher matcher = replaceParamPattern.matcher(result);// 取公共参数正则
+        Map<String, String> map = new HashMap<>();
+        map.put("test", "15094633670");
+        map.put("test1", "1509463367011");
+        map.put("test11", "150946336701111");
+        while (matcher.find()) {
+            String replaceKey = matcher.group(1);
+            System.out.println(replaceKey);
+            /*String value;
+            // 从公共参数池中获取值
+            value = map.get(replaceKey);
+            System.out.println(value);
+            // 如果公共参数池中未能找到对应的值，该用例失败。
+            Assert.assertNotNull(value,
+                    String.format("格式化参数失败，公共参数中找不到%s。", replaceKey));
+            result = result.replace(matcher.group(), value);*/
+        }
+        System.out.println(result);
+        //System.out.println(test.testres(result));
+
+        /*HttpClient httpClient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost("");
+        HttpUriRequest httpUriRequest = new HttpPost("");
+        HttpResponse response = httpClient.execute(httpPost);
+        // CloseableHttpResponse
 
         String param = "{\"custAcctId\":\"{0}\",\"selectFlag\":\"2\",\"pageNum\":1}";
         String global = "ssss";
         // String paramstring = MessageFormat.format(param, global);
         String paramstrings = param.replace("{0}", global);
-        System.out.println(paramstrings);
+        System.out.println(paramstrings);*/
         //System.out.println(paramstring);
 
         /*String string = String.format("name=%s, age=%d", "huhx", 25);

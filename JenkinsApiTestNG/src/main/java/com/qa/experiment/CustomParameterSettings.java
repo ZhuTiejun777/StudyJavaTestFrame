@@ -33,8 +33,8 @@ public class CustomParameterSettings extends TestBase{
     public void beforeclass() {
         testBase = new TestBase();
         // 读取配置文件设为全局变量
-        host = prop.getProperty("HOST");
-        cookie = prop.getProperty("COOKIE");
+        // host = prop.getProperty("HOST");
+        // cookie = prop.getProperty("COOKIE");
         restClientXls = new RestClientXls();
     }
 

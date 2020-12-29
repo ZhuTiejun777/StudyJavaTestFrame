@@ -5,15 +5,21 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONPath;
 import com.jayway.jsonpath.JsonPath;
+import com.sun.net.httpserver.Headers;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.*;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
+import org.apache.http.entity.mime.MultipartEntity;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
 
 
 public class TestUtil {
