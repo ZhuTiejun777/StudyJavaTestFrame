@@ -1,8 +1,8 @@
-2021-01-05 11:22:16 557 INFO  TestApi:43 - 请求数据:{"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
-2021-01-05 11:22:16 839 INFO  MethodUtil:33 - method:post
-2021-01-05 11:22:16 839 INFO  MethodUtil:34 - url:http://192.168.1.18:8088/bankApi/querySubaccountBalance
-2021-01-05 11:22:16 839 INFO  MethodUtil:35 - param:{"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
-2021-01-05 11:22:17 251 INFO  TestApi:51 - 响应数据:{
+2021-01-05 15:11:56 201 INFO  TestApi:42 - 请求数据:{"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
+2021-01-05 15:11:56 534 INFO  MethodUtil:32 - method:post
+2021-01-05 15:11:56 535 INFO  MethodUtil:33 - url:http://192.168.1.18:8088/bankApi/querySubaccountBalance
+2021-01-05 15:11:56 536 INFO  MethodUtil:34 - param:{"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
+2021-01-05 15:11:57 178 INFO  TestApi:50 - 响应数据:{
 	"msg":"成功",
 	"payload":{
 		"Reserve":"",
@@ -19,10 +19,10 @@
 	},
 	"state":"1"
 }
-2021-01-05 11:22:17 252 INFO  TestApi:53 - 状态码:200
-2021-01-05 11:22:17 340 INFO  ToolsUtil:30 - actualValue:成功
-2021-01-05 11:22:17 340 INFO  ToolsUtil:31 - exceptValue:成功
-2021-01-05 11:22:17 341 INFO  ToolsUtil:30 - actualValue:交易成功
-2021-01-05 11:22:17 341 INFO  ToolsUtil:31 - exceptValue:交易成功
-2021-01-05 11:22:17 342 INFO  TestBase:165 - 存储公共参数   test值为：成功.
-2021-01-05 11:22:17 343 INFO  TestBase:165 - 存储公共参数   rspmsg值为：交易成功.
+2021-01-05 15:11:57 178 INFO  TestApi:52 - 状态码:200
+2021-01-05 15:11:57 262 INFO  ToolsUtil:37 - actualValue:成功
+2021-01-05 15:11:57 263 INFO  ToolsUtil:38 - exceptValue:成功
+2021-01-05 15:11:57 264 INFO  ToolsUtil:37 - actualValue:交易成功
+2021-01-05 15:11:57 265 INFO  ToolsUtil:38 - exceptValue:交易成功
+2021-01-05 15:11:57 265 INFO  ToolsUtil:105 - 存储公共参数   test值为：成功.
+2021-01-05 15:11:57 266 INFO  ToolsUtil:105 - 存储公共参数   rspmsg值为：交易成功.
