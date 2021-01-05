@@ -1,18 +1,35 @@
 package com.qa.bean;
 
-public class ApiDataBean extends BaseBean {
+public class ApiDataBean {
     private boolean run;
     private String desc; // 接口描述
     private String url;
+    private String header;
     private String method;
-    private String param;
-    private boolean contains;
+    private String param;  // 请求参数
     private int status;
-    private String verify;
-    private String save;
-    private String preParam;
-    private int sleep;
+    private String verify; // 断言验证
+    private String save; // 响应数据加入公共池
+    private String preParam; // 请求数据加入公共池
+    private int sleep;  // 休眠时间
+    private String excelName;
+    private String sheetName;
 
+    public String getSheetName() {
+        return sheetName;
+    }
+
+    public void setSheetName(String sheetName) {
+        this.sheetName = sheetName;
+    }
+
+    public String getExcelName() {
+        return excelName;
+    }
+
+    public void setExcelName(String excelName) {
+        this.excelName = excelName;
+    }
     public boolean isRun() {
         return run;
     }
@@ -37,6 +54,14 @@ public class ApiDataBean extends BaseBean {
         this.url = url;
     }
 
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
     public String getMethod() {
         return method;
     }
@@ -51,14 +76,6 @@ public class ApiDataBean extends BaseBean {
 
     public void setParam(String param) {
         this.param = param;
-    }
-
-    public boolean isContains() {
-        return contains;
-    }
-
-    public void setContains(boolean contains) {
-        this.contains = contains;
     }
 
     public int getStatus() {

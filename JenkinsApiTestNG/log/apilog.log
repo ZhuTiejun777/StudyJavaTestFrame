@@ -1,20 +1,15 @@
-2020-11-25 18:02:17 287 INFO  TestBase:23 - 正在读取配置文件...
-2020-11-25 18:02:17 385 INFO  TestBase:23 - 正在读取配置文件...
-2020-11-25 18:02:17 743 INFO  MemberTestApi:49 - Title: 虚拟账户查询
-2020-11-25 18:02:19 181 INFO  RestClientXls:47 - http://192.168.1.18:8088/bankApi/querySubaccountBalance
-2020-11-25 18:02:19 188 INFO  RestClientXls:52 - Add Header: Content-Type=application/json
-2020-11-25 18:02:19 282 INFO  RestClientXls:57 - Resqust Param: {"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
-2020-11-25 18:02:19 561 INFO  MemberTestApi:54 - Response Code: 200
-2020-11-25 18:02:19 561 INFO  TestUtil:89 - Result: statuscode=200
-2020-11-25 18:02:19 562 INFO  TestUtil:89 - Result: result=成功
-2020-11-25 18:02:19 565 INFO  TestUtil:65 - Response Param: {
+2021-01-05 11:22:16 557 INFO  TestApi:43 - 请求数据:{"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
+2021-01-05 11:22:16 839 INFO  MethodUtil:33 - method:post
+2021-01-05 11:22:16 839 INFO  MethodUtil:34 - url:http://192.168.1.18:8088/bankApi/querySubaccountBalance
+2021-01-05 11:22:16 839 INFO  MethodUtil:35 - param:{"custAcctId":"3294000000102488","selectFlag":"2","pageNum":1}
+2021-01-05 11:22:17 251 INFO  TestApi:51 - 响应数据:{
 	"msg":"成功",
 	"payload":{
 		"Reserve":"",
 		"TranFunc":"6010",
-		"BodyMsg":"1&1&1&1&3294000000102488&1&ETCZJ001395&&74078.25&63976.25&20191212&&",
+		"BodyMsg":"1&1&1&1&3294000000102488&1&ETCZJ001395&&12773.55&2671.55&20191212&&",
 		"TotalCount":"1",
-		"ArrayContent":"3294000000102488&1&ETCZJ001395&&74078.25&63976.25&20191212",
+		"ArrayContent":"3294000000102488&1&ETCZJ001395&&12773.55&2671.55&20191212",
 		"RspMsg":"交易成功",
 		"RspCode":"000000",
 		"RspMsgBak":"交易成功                                                                                            ",
@@ -24,5 +19,10 @@
 	},
 	"state":"1"
 }
-2020-11-25 18:02:19 641 INFO  MemberTestApi:59 - Assert: 成功 and 成功
-2020-11-25 18:02:19 641 INFO  MemberTestApi:60 - ssss
+2021-01-05 11:22:17 252 INFO  TestApi:53 - 状态码:200
+2021-01-05 11:22:17 340 INFO  ToolsUtil:30 - actualValue:成功
+2021-01-05 11:22:17 340 INFO  ToolsUtil:31 - exceptValue:成功
+2021-01-05 11:22:17 341 INFO  ToolsUtil:30 - actualValue:交易成功
+2021-01-05 11:22:17 341 INFO  ToolsUtil:31 - exceptValue:交易成功
+2021-01-05 11:22:17 342 INFO  TestBase:165 - 存储公共参数   test值为：成功.
+2021-01-05 11:22:17 343 INFO  TestBase:165 - 存储公共参数   rspmsg值为：交易成功.

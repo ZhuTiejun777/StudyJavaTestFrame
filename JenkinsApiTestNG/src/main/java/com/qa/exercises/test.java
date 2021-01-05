@@ -1,11 +1,14 @@
 package com.qa.exercises;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPath;
 import com.qa.base.TestBase;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
+import com.qa.bean.ApiDataBean;
+import com.qa.tests.TestApi;
+import com.qa.util.ExcelUtil;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -15,39 +18,336 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.formula.functions.T;
+import org.dom4j.DocumentException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.swing.text.html.parser.Entity;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.qa.util.ExcelUtil.instantiationBean;
+import static com.qa.util.ExcelUtil.readExcel;
+import static com.qa.util.ToolsUtil.buildRequestParam;
 
 public class test extends TestBase {
 
     /*public String testres (String string) {
         return getCommonParam(string);
     }*/
+    final static Logger Log = Logger.getLogger(test.class);
 
     @Test
     public void test01 () {
+        String str = "ss";
+        System.out.println(null == str || "".equals(str));
+        System.out.println(true || false || false);
+        if (true || false || false) {
+            System.out.println("result");
+        }
+    }
+
+    @Test
+    public void test02 () {
+        String shortUrl = "/sss/sss/eee";
+        shortUrl = shortUrl.replaceFirst("/", "");
+        System.out.println(shortUrl);
+    }
+
+    @Test
+    public void test03 () {
+        System.out.println("post".equalsIgnoreCase("POST"));
+        System.out.println("pots".equalsIgnoreCase("POST"));
+        System.out.println("Test".equalsIgnoreCase("TEST"));
+        System.out.println("Test".equalsIgnoreCase("tEST"));
+        System.out.println("test".equalsIgnoreCase("TEST"));
+    }
+
+
+    @Test
+    public void test04 () {
+        File file = Paths.get(System.getProperty("user.dir"), "excelPath.xls").toFile();
+        System.out.println(file.toString());
+    }
+
+    @Test
+    public void test05 () {
+        /*ArrayList<T> arrayList = new ArrayList<>();
+        arrayList.forEach((bean) -> {
+            bean.setExcelName(file.getName());
+        });*/
+    }
+
+    @Test
+    public void test06 () {
+        List<ApiDataBean> temArrayList = new ArrayList<ApiDataBean>();
+        // 获取文件路径
+        File file = Paths.get(System.getProperty("user.dir"), excelPath).toFile();
+        temArrayList = ExcelUtil.readExcel(file.getAbsolutePath());
+        for (ApiDataBean apiDataBean : temArrayList) {
+            System.out.println(apiDataBean.getHeader());
+            System.out.println(apiDataBean.getPreParam());
+            System.out.println(apiDataBean.toString());
+        }
 
     }
 
-    public static void main(String[] args) throws IOException, BiffException {
+    @Test
+    public void test07 () throws IOException {
+        String string = Paths.get(System.getProperty("user.dir"), excelPath).toString();
+        File file = new File(string);
+        InputStream inputStream = new FileInputStream(file);
+        Workbook workbook = new HSSFWorkbook(inputStream);
+        inputStream.close();
+        int index = workbook.getNumberOfSheets();
+        for (int i = 0; i < index; i ++) {
+            Sheet sheet = workbook.getSheetAt(i);
+            int rowNum = sheet.getLastRowNum();
+            Row row = sheet.getRow(0);
+
+        }
+    }
+
+    @Test
+    public void test08 () throws IOException {
+        String string = Paths.get(System.getProperty("user.dir"), excelPath).toString();
+        File file = new File(string);
+        InputStream inputStream = new FileInputStream(file);
+        Workbook workbook = new HSSFWorkbook(inputStream);
+        inputStream.close();
+        Sheet sheet = workbook.getSheet("Sheet1");
+        Row row = sheet.getRow(1);
+        Iterator<Cell> iterator = row.cellIterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+        List<Object> cells = new ArrayList<Object>();
+        for (int i = 0; i < row.getLastCellNum(); i ++ ) {
+            Cell cell = row.getCell(i);
+            //cells.add(getValue(cell));
+        }
+        System.out.println(cells);
+
+    }
+
+    @Test
+    public void test09 () throws IOException {
+        String string = Paths.get(System.getProperty("user.dir"), excelPath).toString();
+        File file = new File(string);
+        InputStream inputStream = new FileInputStream(file);
+        Workbook workbook = new HSSFWorkbook(inputStream);
+        //取出第一张表，遍历行
+        ArrayList<HashMap<String, String>> dataArray = new ArrayList<HashMap<String, String>>();
+        Sheet sheet = workbook.getSheetAt(0);
+        String sheetName = sheet.getSheetName();
+        System.out.println(sheetName);
+        Map<Integer, String> keymap = new HashMap<Integer, String>();
+        Row row = null;
+        //遍历行 getPhysicalNumberOfRows获取物理行 getFirstRowNum获取有数据的第一行行数
+        for (int i = sheet.getFirstRowNum(); i <= sheet.getPhysicalNumberOfRows(); i++) {
+            try {
+                row = sheet.getRow(i);
+            } catch (Exception e) {
+                e.getStackTrace();
+            }
+            // 当读取行为空时
+            if (row == null) {
+                continue;
+            }
+            HashMap<String, String> hashMap = new HashMap<String, String>();
+            // 取出每一行的列数据
+            for (int j = row.getFirstCellNum(); j < row.getLastCellNum(); j++) {
+                if (i == 0) {//表头栏
+                    keymap.put(j, row.getCell(j).getStringCellValue());
+                } else {//数据栏
+                    //将每列的表头同每列的数据放入json
+                    if (row.getCell(j) != null) {
+                        //设置单元格类型
+                        Cell cell = row.getCell(j);
+                        //row.getCell(j).setCell(CellType.STRING);
+                        cell.setCellType(CellType.STRING);
+                        hashMap.put(keymap.get(j), row.getCell(j).getStringCellValue());
+                    } else {
+                        hashMap.put(keymap.get(j), null);
+                    }
+                }
+            }
+            //将每行数据json放入json数组
+            if (hashMap.size() > 0) {
+                dataArray.add(hashMap);
+                }
+            }
+        //判断dataArray是否有数据，有的话调用importjson方法
+        // ApiDataBean apiDataBean = new ApiDataBean();
+        List<ApiDataBean> list = new ArrayList<>();
+        if (dataArray.size() > 0) {
+            list = instantiationBean(dataArray, sheetName);
+        } else {
+            System.out.println("数据为空");
+        }
+        /*list.forEach(baen -> {
+            apiDataBean.setSheetName(sheetName);
+        });*/
+        if (list != null) {
+            for (ApiDataBean apiDataBean : list) {
+                System.out.println(apiDataBean.isRun());
+                System.out.println(apiDataBean.getDesc());
+                System.out.println(apiDataBean.getHeader());
+                System.out.println(apiDataBean.getMethod());
+                System.out.println(apiDataBean.getSheetName());
+            }
+        }
+    }
+
+    @Test
+    public void test10 () {
+        String preParam = "qqq";
+        if (!"".equals(preParam)) {
+            System.out.println(preParam);
+        }
+    }
+
+    @Test
+    public void test11 () throws DocumentException {
+        String[] sheetNameArr = sheetName.split(";");
+        if (sheetNameArr.length == 0 || sheetNameArr[0] == "") {
+            System.out.println("test");
+        }
+        List<ApiDataBean> dataList = readExcelData(excelPath.split(";"), sheetName.split(";"));
+        for (ApiDataBean apidatabean : dataList) {
+            System.out.println(apidatabean.getUrl());
+            System.out.println(apidatabean.getSheetName());
+            System.out.println("--------------------");
+        }
+    }
+
+    @Test
+    public void test12 () {
+        String shortUrl = "/bankApi/querySubaccountBalance";
+        shortUrl = getCommonParam(shortUrl);
+        boolean rooUrlEndWithSlash = url.endsWith("/");
+        // 如果url以http开头，直接返回，判断xls中的url
+        if (shortUrl.startsWith("http")) {
+            System.out.println(shortUrl);
+        }
+        // 配置项不以"/"结尾false，判读读取文件中的url是否以"/"开头(可能以http开头的全路径url)
+        if (rooUrlEndWithSlash == shortUrl.startsWith("/")) {
+            // 判断是否配置项以"/"结尾
+            if (rooUrlEndWithSlash) {
+                // 以"/"结尾，去掉xls中url第一个"/"
+                shortUrl = shortUrl.replaceFirst("/", "");
+            } else {
+                // 加上"/"开头
+                shortUrl = "/" + shortUrl;
+            }
+        }
+        System.out.println(url + shortUrl);
+    }
+
+    @Test
+    public void test13 () throws DocumentException {
+        List<ApiDataBean> list = readExcelData(excelPath.split(";"), sheetName.split(";"));
+        for (ApiDataBean apiDataBean : list) {
+            String apiParam = buildRequestParam(apiDataBean);
+            Log.info(apiParam);
+            // TODO 执行用例
+            HttpClient httpClient = HttpClients.createDefault();
+            url = url + apiDataBean.getUrl();
+            Log.info(url);
+            HttpPost postMethod = new HttpPost(url);
+            Log.info(apiDataBean.getHeader());
+            for (String stringHeader : apiDataBean.getHeader().split(";")) {
+                postMethod.setHeader(stringHeader.split("\"")[1], stringHeader.split("\"")[3]);
+                Log.info(stringHeader.split(":")[0]);
+                Log.info(stringHeader.split(":")[1]);
+            }
+            HttpEntity entity = new StringEntity(apiParam, "UTF-8");
+            // StringEntity stringEntity = new StringEntity(apiParam.toString());
+            postMethod.setEntity(entity);
+
+            HttpResponse response = null;
+            String responseData = null;
+            try {
+                response  = httpClient.execute(postMethod);
+                HttpEntity respEntity = response.getEntity();
+                responseData= EntityUtils.toString(respEntity, "UTF-8");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assert response != null;
+            Log.info(responseData);
+            int responseStatus = response.getStatusLine().getStatusCode();
+            Log.info(responseStatus);
+            Log.info(apiDataBean.getStatus());
+            if (apiDataBean.getStatus()!= 0) {
+                Assert.assertEquals(responseStatus, apiDataBean.getStatus(), "返回状态码与预期不符合!");
+            }
+            Log.info(apiDataBean.getVerify());
+            for (String stringVerify : apiDataBean.getVerify().split(";")) {
+                Log.info(stringVerify);
+                Log.info(stringVerify.split("=")[0]);
+                Log.info(stringVerify.split("=")[1]);
+                String actualValue = JSONPath.read(responseData, stringVerify.split("=")[0]).toString();
+                String exceptValue = stringVerify.split("=")[1].trim();
+                Log.info("actualValue:" + actualValue);
+                Log.info("exceptValue:" + exceptValue);
+                Assert.assertEquals(actualValue, exceptValue);
+            }
+        }
+    }
+
+    @Test
+    public void test14 () throws IOException, DocumentException {
+        List<ApiDataBean> list = readExcelData(excelPath.split(";"), sheetName.split(";"));
+        for (ApiDataBean apiDataBean : list) {
+            CloseableHttpClient client = HttpClients.createDefault();
+            Log.info(url + apiDataBean.getUrl());
+            HttpPost httpPost = new HttpPost(url + apiDataBean.getUrl());
+            // 处理header字段,添加请求头
+            for (String string : apiDataBean.getHeader().split(";")) {
+                //httpPost.setHeader(string.split("\"")[1], string.split("\"")[3]);
+                System.out.println(string);
+                httpPost.setHeader(string.split(":")[0], string.split(":")[1]);
+                Log.info("Add Header: " + string.split(":")[0] + "=" + string.split(":")[1]);
+                Log.info("Add Header: " + string.split("\"")[1] + "=" + string.split("\"")[3]);
+            }
+            //httpPost.setHeader("Cookie", cookie);
+            // 处理param字段,添加请求数据,json格式
+            JSONObject objectParam = JSON.parseObject(apiDataBean.getParam());
+            Log.info("Resqust Param: " + objectParam.toString());
+            StringEntity stringEntity = new StringEntity(objectParam.toString());
+            // 设置请求编码
+            // stringEntity.setContentEncoding("UTF-8");
+            // 设置请求ContentType
+            // stringEntity.setContentType("application/json");
+            httpPost.setEntity(stringEntity);
+            CloseableHttpResponse response = client.execute(httpPost);
+            System.out.println(EntityUtils.toString(response.getEntity()));
+            Assert.assertEquals(response.getStatusLine().getStatusCode(), 200);
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
 
         //test test = new test();
         // Pattern replaceParamPattern = Pattern.compile("\\$\\{(.*?)\\}");
-        Workbook workbook = Workbook.getWorkbook(new File(".//data//TestFormat.xls"));
+        /*Workbook workbook = Workbook.getWorkbook(new File(".//data//TestFormat.xls"));
         Sheet sheet = workbook.getSheet("Sheet1");
         System.out.println(sheet.getCell(5,1).getContents());
         String result = sheet.getCell(5,1).getContents();
-        Pattern replaceParamPattern = Pattern.compile("A(.*?)I");
-        //Pattern replaceParamPattern = Pattern.compile("$\\{(.*?)\\}");
+        //Pattern replaceParamPattern = Pattern.compile("A(.*?)I");
+        Pattern replaceParamPattern = Pattern.compile("\\$\\{(.*?)\\}");
         Matcher matcher = replaceParamPattern.matcher(result);// 取公共参数正则
         Map<String, String> map = new HashMap<>();
         map.put("test", "15094633670");
@@ -56,16 +356,20 @@ public class test extends TestBase {
         while (matcher.find()) {
             String replaceKey = matcher.group(1);
             System.out.println(replaceKey);
-            /*String value;
+            *//*System.out.println(matcher.group(0));
+            System.out.println(matcher.group(1));
+            System.out.println(matcher.group(2));
+            System.out.println(matcher.group(3));*//*
+            *//*String value;
             // 从公共参数池中获取值
             value = map.get(replaceKey);
             System.out.println(value);
             // 如果公共参数池中未能找到对应的值，该用例失败。
             Assert.assertNotNull(value,
                     String.format("格式化参数失败，公共参数中找不到%s。", replaceKey));
-            result = result.replace(matcher.group(), value);*/
+            result = result.replace(matcher.group(), value);*//*
         }
-        System.out.println(result);
+        System.out.println(result);*/
         //System.out.println(test.testres(result));
 
         /*HttpClient httpClient = HttpClients.createDefault();

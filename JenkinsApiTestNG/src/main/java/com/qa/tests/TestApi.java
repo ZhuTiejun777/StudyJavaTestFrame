@@ -1,147 +1,91 @@
 package com.qa.tests;
 
-import com.alibaba.fastjson.JSON;
 import com.qa.base.TestBase;
-import com.qa.util.ReportUtil;
-import org.apache.http.Header;
+import com.qa.bean.ApiDataBean;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
+import org.dom4j.DocumentException;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
-import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
+import java.util.*;
 
+import static com.qa.util.MethodUtil.parseHttpRequest;
+import static com.qa.util.MethodUtil.parseUrl;
+import static com.qa.util.ToolsUtil.buildRequestParam;
+import static com.qa.util.ToolsUtil.verifyResult;
 
 public class TestApi extends TestBase {
 
     /**
-     * api请求跟路径
-     */
-    private static String rootUrl;
-
-    /**
-     * 所有公共header，会在发送请求的时候添加到http header上
-     */
-    private static Header[] publicHeaders;
-
-    /**
      * 是否使用form-data传参 会在post与put方法封装请求参数用到
      */
-    private static boolean requestByFormData = false;
+    // private static boolean requestByFormData = false;
 
-    /**
-     * 跟路径是否以‘/’结尾
-     */
-    private static boolean rooUrlEndWithSlash = false;
+    final static Logger Log = Logger.getLogger(TestApi.class);
 
-
-    // TODO
-
-    /**
-     * 封装请求方法
-     *
-     * @param url
-     *            请求路径
-     * @param method
-     *            请求方法
-     * @param param
-     *            请求参数
-     * @return 请求方法
-     * @throws UnsupportedEncodingException
-     */
-    private HttpUriRequest parseHttpRequest(String url, String method, String param) throws UnsupportedEncodingException {
-        // 处理url
-        url = parseUrl(url);
-        // TODO
-        ReportUtil.log("method:" + method);
-        ReportUtil.log("url:" + url);
-        ReportUtil.log("param:" + param.replace("\r\n", "").replace("\n", ""));
-        //upload表示上传，也是使用post进行请求
-        if ("post".equalsIgnoreCase(method) || "upload".equalsIgnoreCase(method)) {
-            // 封装post方法
-            HttpPost postMethod = new HttpPost(url);
-            postMethod.setHeaders(publicHeaders);
-            //如果请求头的content-type的值包含form-data 或者 请求方法为upload(上传)时采用MultipartEntity形式
-            HttpEntity entity  = parseEntity(param,requestByFormData || "upload".equalsIgnoreCase(method));
-            postMethod.setEntity(entity);
-            return postMethod;
-        } else if ("put".equalsIgnoreCase(method)) {
-            // 封装put方法
-            HttpPut putMethod = new HttpPut(url);
-            putMethod.setHeaders(publicHeaders);
-            HttpEntity entity  = parseEntity(param,requestByFormData );
-            putMethod.setEntity(entity);
-            return putMethod;
-        } else if ("delete".equalsIgnoreCase(method)) {
-            // 封装delete方法
-            HttpDelete deleteMethod = new HttpDelete(url);
-            deleteMethod.setHeaders(publicHeaders);
-            return deleteMethod;
-        } else {
-            // 封装get方法
-            HttpGet getMethod = new HttpGet(url);
-            getMethod.setHeaders(publicHeaders);
-            return getMethod;
+    @Test(dataProvider = "apiDatas")
+    public void test01 (ApiDataBean apiDataBean) throws UnsupportedEncodingException, InterruptedException {
+        if (apiDataBean.getSleep() > 0) {
+            // sleep休眠时间大于0的情况下进行暂停休眠
+            Log.info(String.format("sleep %s seconds", apiDataBean.getSleep()));
+            Thread.sleep(apiDataBean.getSleep() * 1000);
         }
-    }
-
-    /**
-     * 格式化参数，如果是from-data格式则将参数封装到MultipartEntity否则封装到StringEntity
-     * @param param 参数
-     * @param formData 是否使用form-data格式
-     * @return
-     * @throws UnsupportedEncodingException
-     */
-    private HttpEntity parseEntity(String param,boolean formData) throws UnsupportedEncodingException{
-        if(formData){
-            Map<String, String> paramMap = JSON.parseObject(param,
-                    HashMap.class);
-            // TODO
-            MultipartEntity multiEntity = new MultipartEntity();
-            for (String key : paramMap.keySet()) {
-                String value = paramMap.get(key);
-                // TODO
-                Matcher m = funPattern.matcher(value);
-                if (m.matches() && m.group(1).equals("bodyfile")) {
-                    value = m.group(2);
-                    multiEntity.addPart(key, new FileBody(new File(value)));
-                } else {
-                    multiEntity.addPart(key, new StringBody(paramMap.get(key)));
-                }
+        String apiParam = buildRequestParam(apiDataBean);
+        url = parseUrl(apiDataBean.getUrl(), url);
+        Log.info("请求数据:" + apiParam);
+        HttpClient httpClient = HttpClients.createDefault();
+        HttpUriRequest method = parseHttpRequest(apiDataBean, url,apiParam);
+        String responseData = null;
+        try {
+            HttpResponse response = httpClient.execute(method);
+            HttpEntity respEntity = response.getEntity();
+            responseData= EntityUtils.toString(respEntity, "UTF-8");
+            Log.info("响应数据:" + responseData);
+            int responseStatus = response.getStatusLine().getStatusCode();
+            Log.info("状态码:" + responseStatus);
+            if (apiDataBean.getStatus()!= 0) {
+                Assert.assertEquals(responseStatus, apiDataBean.getStatus(), "返回状态码与预期不符合!");
             }
-            return multiEntity;
-        }else{
-            return new StringEntity(param, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        // TODO 断言结果 状态码枚举类 添加到util 状态码提取xls中的数据
+        // 验证预期信息
+        verifyResult(responseData, apiDataBean.getVerify());
+        // 对返回结果进行提取保存。
+        saveResult(responseData, apiDataBean.getSave());
+        // TODO 文件上传
+        // System.out.println(saveDatas.get("test"));
     }
 
     /**
-     * 格式化url,替换路径参数等。
+     * 过滤数据，run标记为Y的执行。
      *
-     * @param shortUrl
      * @return
+     * @throws DocumentException
      */
-    private String parseUrl(String shortUrl) {
-        // 替换url中的参数
-        shortUrl = getCommonParam(shortUrl);
-        if (shortUrl.startsWith("http")) {
-            return shortUrl;
-        }
-        if (rooUrlEndWithSlash == shortUrl.startsWith("/")) {
-            if (rooUrlEndWithSlash) {
-                shortUrl = shortUrl.replaceFirst("/", "");
-            } else {
-                shortUrl = "/" + shortUrl;
+    @DataProvider(name = "apiDatas")
+    public Iterator<Object[]> getApiData() throws DocumentException {
+        /**
+         * 所有api测试用例数据
+         */
+        List<ApiDataBean> dataList = readExcelData(excelPath.split(";"), sheetName.split(";"));
+
+        List<Object[]> dataProvider = new ArrayList<Object[]>();
+        for (ApiDataBean data : dataList) {
+            if (data.isRun()) {
+                dataProvider.add(new Object[] { data });
             }
         }
-        return rootUrl + shortUrl;
+        return dataProvider.iterator();
     }
-
 
 }
