@@ -3,9 +3,16 @@
 <suite name="Default Suite">
     <test name="Java_Learn">
         <classes>
-            <class name="com.qa.tests.TestApiReadXls"/>
+            <!--<class name="com.qa.tests.TestApiReadXls"/>
             <class name="com.qa.tests.MemberTestApi"/>
-            <class name="com.qa.experiment.CustomParameterSettings"/>
+            <class name="com.qa.experiment.CustomParameterSettings"/>-->
+            <class name="com.qa.tests.TestApi"/>
         </classes>
     </test> <!-- Java_Learn -->
+    <listeners>
+        <!--testng的XML配置文件中添加这些内容-->
+        <!-- ReportNg 报告  -->
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
 </suite> <!-- Default Suite -->

@@ -13,8 +13,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>14</source>
+                    <target>14</target>
                 </configuration>
             </plugin>
             <!--maven-surefire-plugin的test目标会自动执行测试源码路径（默认为src/test/java/）下所有符合一组命名模式的测试类-->
@@ -30,6 +30,34 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!--<plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                &lt;!&ndash;                <version>2.22.1</version>&ndash;&gt;
+                <configuration>
+                    &lt;!&ndash;<testFailureIgnore>true</testFailureIgnore>&ndash;&gt;
+                    <forkMode>never</forkMode>
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>usedefaultlisteners</name>
+                            <value>true</value>
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter</value>
+                        </property>
+                    </properties>
+                    <workingDirectory>target/</workingDirectory>
+                    <forkMode>always</forkMode>
+                    &lt;!&ndash; 解决报告中中文乱码 &ndash;&gt;
+                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                </configuration>
+            </plugin>
+        </plugins>-->
     </build>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
@@ -59,6 +87,25 @@
             <version>6.14.3</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.uncommons</groupId>
+            <artifactId>reportng</artifactId>
+            <version>1.1.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.0</version>
+        </dependency>
+        <!-- 生产html报告使用，过高版本会导致变量不能替换-->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
         <dependency>
             <groupId>net.sourceforge.jexcelapi</groupId>
             <artifactId>jxl</artifactId>

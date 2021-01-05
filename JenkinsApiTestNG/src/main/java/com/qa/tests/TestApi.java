@@ -19,8 +19,7 @@ import java.util.*;
 
 import static com.qa.util.MethodUtil.parseHttpRequest;
 import static com.qa.util.MethodUtil.parseUrl;
-import static com.qa.util.ToolsUtil.buildRequestParam;
-import static com.qa.util.ToolsUtil.verifyResult;
+import static com.qa.util.ToolsUtil.*;
 
 public class TestApi extends TestBase {
 
@@ -63,7 +62,7 @@ public class TestApi extends TestBase {
         // 对返回结果进行提取保存。
         saveResult(responseData, apiDataBean.getSave());
         // TODO 文件上传
-        // System.out.println(saveDatas.get("test"));
+        System.out.println(getSaveDatas("test"));
     }
 
     /**

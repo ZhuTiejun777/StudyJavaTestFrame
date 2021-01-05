@@ -12,7 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.qa.base.TestBase.getCommonParam;
+import static com.qa.util.ToolsUtil.getCommonParam;
 
 public class MethodUtil {
 
@@ -21,7 +21,6 @@ public class MethodUtil {
     /**
      * 封装请求方法
      * @param url 请求路径
-     * @param method 请求方法
      * @param param 请求参数
      * @return 请求方法
      * @throws UnsupportedEncodingException

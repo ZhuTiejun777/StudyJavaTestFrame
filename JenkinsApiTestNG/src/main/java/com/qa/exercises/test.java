@@ -40,6 +40,7 @@ import java.util.regex.Pattern;
 import static com.qa.util.ExcelUtil.instantiationBean;
 import static com.qa.util.ExcelUtil.readExcel;
 import static com.qa.util.ToolsUtil.buildRequestParam;
+import static com.qa.util.ToolsUtil.getCommonParam;
 
 public class test extends TestBase {
 
