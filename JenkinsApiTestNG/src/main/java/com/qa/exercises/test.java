@@ -339,6 +339,15 @@ public class test extends TestBase {
         }
     }
 
+    @Test
+    public void test15 () {
+
+        HashMap<String, String> hashMap = new HashMap<>();
+        JSONObject jsonObject = JSON.parseObject(String.valueOf(hashMap));
+    }
+
+
+
     public static void main(String[] args) throws IOException {
 
         //test test = new test();

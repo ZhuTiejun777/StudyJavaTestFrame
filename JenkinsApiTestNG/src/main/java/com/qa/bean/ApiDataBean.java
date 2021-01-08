@@ -8,6 +8,7 @@ public class ApiDataBean {
     private String method;
     private String param;  // 请求参数
     private int status;
+    private boolean contains; // 包含数据
     private String verify; // 断言验证
     private String save; // 响应数据加入公共池
     private String preParam; // 请求数据加入公共池
@@ -84,6 +85,14 @@ public class ApiDataBean {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public boolean isContains() {
+        return contains;
+    }
+
+    public void setContains(boolean contains) {
+        this.contains = contains;
     }
 
     public String getVerify() {

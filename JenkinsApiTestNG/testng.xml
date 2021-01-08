@@ -14,5 +14,8 @@
         <!-- ReportNg 报告  -->
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        <!--失败重跑监听器-->
+        <listener class-name="com.qa.listener.RetryListener"/>
+        <listener class-name="com.qa.listener.TestNGListener"/>
     </listeners>
 </suite> <!-- Default Suite -->

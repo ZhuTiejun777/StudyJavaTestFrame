@@ -3,15 +3,9 @@ package com.qa.base;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.alibaba.fastjson.JSONPath;
 import com.qa.bean.ApiDataBean;
 import com.qa.util.*;
 import org.apache.log4j.Logger;
-import org.dom4j.DocumentException;
-import org.testng.Assert;
 
 public class TestBase {
 
@@ -23,7 +17,7 @@ public class TestBase {
     protected String contentType;
     protected String cookie;
 
-    final Logger Log = Logger.getLogger(TestBase.class);
+    final Logger logger = Logger.getLogger(TestBase.class);
     ResourceBundle resourceBundle = ResourceBundle.getBundle("config");
 
     /**

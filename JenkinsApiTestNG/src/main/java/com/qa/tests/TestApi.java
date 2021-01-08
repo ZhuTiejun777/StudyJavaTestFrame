@@ -2,6 +2,8 @@ package com.qa.tests;
 
 import com.qa.base.TestBase;
 import com.qa.bean.ApiDataBean;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -12,15 +14,18 @@ import org.apache.log4j.Logger;
 import org.dom4j.DocumentException;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import ru.yandex.qatools.allure.annotations.Description;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import static com.qa.util.MethodUtil.parseHttpRequest;
-import static com.qa.util.MethodUtil.parseUrl;
 import static com.qa.util.ToolsUtil.*;
 
+
+//@Feature("FeatureTest")
 public class TestApi extends TestBase {
 
     /**
@@ -31,17 +36,20 @@ public class TestApi extends TestBase {
     final static Logger Log = Logger.getLogger(TestApi.class);
 
     @Test(dataProvider = "apiDatas")
+    /*@Story("StoryTest")
+    @Description("DescriptionTest")
+    @Step("StepTest")*/
     public void test01 (ApiDataBean apiDataBean) throws UnsupportedEncodingException, InterruptedException {
         if (apiDataBean.getSleep() > 0) {
             // sleep休眠时间大于0的情况下进行暂停休眠
             Log.info(String.format("sleep %s seconds", apiDataBean.getSleep()));
             Thread.sleep(apiDataBean.getSleep() * 1000);
         }
-        String apiParam = buildRequestParam(apiDataBean);
-        url = parseUrl(apiDataBean.getUrl(), url);
-        Log.info("请求数据:" + apiParam);
+        // String apiParam = buildRequestParam(apiDataBean);
+        // String rootUrl = parseUrl(apiDataBean.getUrl(), url);
+        // Log.info("请求数据:" + apiParam);
         HttpClient httpClient = HttpClients.createDefault();
-        HttpUriRequest method = parseHttpRequest(apiDataBean, url,apiParam);
+        HttpUriRequest method = parseHttpRequest(apiDataBean, url);
         String responseData = null;
         try {
             HttpResponse response = httpClient.execute(method);

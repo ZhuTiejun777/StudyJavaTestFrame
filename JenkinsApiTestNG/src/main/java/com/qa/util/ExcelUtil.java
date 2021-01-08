@@ -1,5 +1,7 @@
 package com.qa.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.bean.ApiDataBean;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -128,8 +130,22 @@ public class ExcelUtil {
         List<ApiDataBean> apiDataBeanList = new ArrayList<>();
         if (dataArray.size() > 0) {
             apiDataBeanList = instantiationBean(dataArray, sheetName);
+            // apiDataBeanList = instantiationBean(dataArray);
         }
         return apiDataBeanList;
+    }
+
+    public static List<ApiDataBean> instantiationBean (List<HashMap<String, String>> list) throws JsonProcessingException {
+        List<ApiDataBean> arrayList = new ArrayList<>();
+        for (HashMap<String, String> hashMap : list) {
+            /*JSONObject jsonObject = JSON.parseObject(String.valueOf(hashMap));
+            ApiDataBean apiDataBean = JSON.parseObject(String.valueOf(hashMap), new TypeReference<ApiDataBean>() {});*/
+            // 序列化 将map转换为json
+            String string = new ObjectMapper().writeValueAsString(hashMap);
+            ApiDataBean apiDataBean = new ObjectMapper().readValue(string, ApiDataBean.class);
+            arrayList.add(apiDataBean);
+        }
+        return arrayList;
     }
 
     /**
@@ -154,7 +170,7 @@ public class ExcelUtil {
                         String value = hashMap.get(key);
                         switch (key){
                             case "run":{
-                                apiDataBean.setRun(judgeRun(value));
+                                apiDataBean.setRun(value.equals("Y"));
                             }
                             case "desc":{
                                 apiDataBean.setDesc(value);
@@ -177,9 +193,12 @@ public class ExcelUtil {
                                 break;
                             }
                             case "status":{
-                                // TODO
-                                apiDataBean.setStatus(Integer.parseInt(value));
+                                apiDataBean.setStatus(parseIntStatus(value));
                                 break;
+                            }
+                            case "contains":{
+                                // TODO
+                                apiDataBean.setContains(judgeContains(value));
                             }
                             case "verify":{
                                 apiDataBean.setVerify(value);
@@ -194,8 +213,7 @@ public class ExcelUtil {
                                 break;
                             }
                             case "sleep":{
-                                // TODO
-                                apiDataBean.setSleep(Integer.parseInt(value));
+                                apiDataBean.setSleep(parseIntSleep(value));
                                 break;
                             }
                         }
@@ -211,16 +229,25 @@ public class ExcelUtil {
         return apiDataBeanArrayList;
     }
 
-    private static boolean judgeRun (String string) {
-        if (string.equals("Y")) {
-            return true;
-        }
-        return false;
-    }
-
     private static boolean judgeContains (String string) {
         // TODO
         return false;
+    }
+
+    private static int parseIntStatus (String string) {
+        if (string == null || "".equals(string)) {
+            return 0;
+        } else {
+            return Integer.parseInt(string);
+        }
+    }
+
+    private static int parseIntSleep (String string) {
+        if (string == null || "".equals(string)) {
+            return 0;
+        } else {
+            return Integer.parseInt(string);
+        }
     }
 
     // 将row数据读取存储到list
