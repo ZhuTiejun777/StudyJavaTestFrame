@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.qa.util.ToolsUtil.buildRequestParam;
 import static com.qa.util.ToolsUtil.getCommonParam;
 
 public class MethodUtil {
@@ -25,9 +26,11 @@ public class MethodUtil {
      * @return 请求方法
      * @throws UnsupportedEncodingException
      */
-    public static HttpUriRequest parseHttpRequest(ApiDataBean apiDataBean,String url, String param) throws UnsupportedEncodingException {
+    public static HttpUriRequest parseHttpRequest(ApiDataBean apiDataBean,String url) throws UnsupportedEncodingException {
         Header[] headers = parseHeader(apiDataBean.getHeader());
+        url = parseUrl(apiDataBean.getUrl(), url);
         String method = apiDataBean.getMethod();
+        String param = buildRequestParam(apiDataBean);
         // TODO  log日志 先不看
         Log.info("method:" + method);
         Log.info("url:" + url);
@@ -73,7 +76,7 @@ public class MethodUtil {
      * @param shortUrl
      * @return
      */
-    public static String parseUrl(String shortUrl, String rootUrl) {
+    private static String parseUrl(String shortUrl, String rootUrl) {
         // 替换url中的参数，判断xls中的url
         shortUrl = getCommonParam(shortUrl);
         boolean rooUrlEndWithSlash = rootUrl.endsWith("/");
@@ -96,7 +99,7 @@ public class MethodUtil {
         return rootUrl + shortUrl;
     }
 
-    public static Header[] parseHeader (String header) {
+    private static Header[] parseHeader (String header) {
         List<Header> headers = new ArrayList<Header>();
         // headers.add(new BasicHeader("Content-Type", contentType));
         if (!"".equals(header)) {
