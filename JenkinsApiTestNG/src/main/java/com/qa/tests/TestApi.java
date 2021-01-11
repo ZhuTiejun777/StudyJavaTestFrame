@@ -2,6 +2,7 @@ package com.qa.tests;
 
 import com.qa.base.TestBase;
 import com.qa.bean.ApiDataBean;
+import com.qa.bean.ConfigBean;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.apache.http.HttpEntity;
@@ -14,8 +15,6 @@ import org.apache.log4j.Logger;
 import org.dom4j.DocumentException;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import ru.yandex.qatools.allure.annotations.Description;
-import ru.yandex.qatools.allure.annotations.Step;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -49,7 +48,7 @@ public class TestApi extends TestBase {
         // String rootUrl = parseUrl(apiDataBean.getUrl(), url);
         // Log.info("请求数据:" + apiParam);
         HttpClient httpClient = HttpClients.createDefault();
-        HttpUriRequest method = parseHttpRequest(apiDataBean, url);
+        HttpUriRequest method = parseHttpRequest(apiDataBean, ConfigBean.getConfgBean().getUrl());
         String responseData = null;
         try {
             HttpResponse response = httpClient.execute(method);
@@ -84,7 +83,7 @@ public class TestApi extends TestBase {
         /**
          * 所有api测试用例数据
          */
-        List<ApiDataBean> dataList = readExcelData(excelPath.split(";"), sheetName.split(";"));
+        List<ApiDataBean> dataList = readExcelData(ConfigBean.getConfgBean().getExcelPath().split(";"), ConfigBean.getConfgBean().getSheetName().split(";"));
 
         List<Object[]> dataProvider = new ArrayList<Object[]>();
         for (ApiDataBean data : dataList) {

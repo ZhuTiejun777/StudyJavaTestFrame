@@ -1,6 +1,7 @@
 package com.qa.tests;
 
 import com.qa.base.TestBase;
+import com.qa.bean.ConfigBean;
 import com.qa.restclient.RestClientXls;
 import com.qa.util.TestUtil;
 import jxl.read.biff.BiffException;
@@ -46,7 +47,7 @@ public class TestApiReadXls extends TestBase {
                 System.out.println("get");
             } else if (method.equals("post")) {
                 // TODO
-                response = restClientXls.post(host+url , header, param);
+                response = restClientXls.post(ConfigBean.getConfgBean().getUrl()+url , header, param);
                 Map<String, String> resultMap = readresult(result);
                 String assertResult = readpath(response, path);
                 Log.info("Response Code: " + response.getStatusLine().getStatusCode());
@@ -72,7 +73,7 @@ public class TestApiReadXls extends TestBase {
         Log.info("Title: " + title);
         Log.info("Method :" + method);
         // TODO
-        CloseableHttpResponse response = restClientXls.post(host+url , header, param);
+        CloseableHttpResponse response = restClientXls.post(ConfigBean.getConfgBean().getUrl()+url , header, param);
         Map<String, String> resultMap = readresult(result);
         String assertResult = readpath(response, path);
         Log.info("Response Code: " + response.getStatusLine().getStatusCode());

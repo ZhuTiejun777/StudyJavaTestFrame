@@ -1,6 +1,7 @@
 package com.qa.util;
 
 import com.qa.bean.ApiDataBean;
+import com.qa.bean.ConfigBean;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.*;
@@ -22,7 +23,6 @@ public class MethodUtil {
     /**
      * 封装请求方法
      * @param url 请求路径
-     * @param param 请求参数
      * @return 请求方法
      * @throws UnsupportedEncodingException
      */
@@ -101,11 +101,13 @@ public class MethodUtil {
 
     private static Header[] parseHeader (String header) {
         List<Header> headers = new ArrayList<Header>();
-        // headers.add(new BasicHeader("Content-Type", contentType));
         if (!"".equals(header)) {
             for (String stringHeader : header.split(";")) {
                 headers.add(new BasicHeader(stringHeader.split("\"")[1], stringHeader.split("\"")[3]));
             }
+        } else {
+            headers.add(new BasicHeader("token", ConfigBean.getConfgBean().getToken()));
+            headers.add(new BasicHeader("Content-Type", ConfigBean.getConfgBean().getToken()));
         }
         return headers.toArray(new Header[headers.size()]);
     }

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONPath;
 import com.qa.base.TestBase;
 import com.qa.bean.ApiDataBean;
+import com.qa.bean.ConfigBean;
 import com.qa.tests.TestApi;
 import com.qa.util.ExcelUtil;
 import org.apache.http.HttpEntity;
@@ -94,7 +95,7 @@ public class test extends TestBase {
     public void test06 () {
         List<ApiDataBean> temArrayList = new ArrayList<ApiDataBean>();
         // 获取文件路径
-        File file = Paths.get(System.getProperty("user.dir"), excelPath).toFile();
+        File file = Paths.get(System.getProperty("user.dir"), ConfigBean.getConfgBean().getExcelPath()).toFile();
         temArrayList = ExcelUtil.readExcel(file.getAbsolutePath());
         for (ApiDataBean apiDataBean : temArrayList) {
             System.out.println(apiDataBean.getHeader());
@@ -106,7 +107,7 @@ public class test extends TestBase {
 
     @Test
     public void test07 () throws IOException {
-        String string = Paths.get(System.getProperty("user.dir"), excelPath).toString();
+        String string = Paths.get(System.getProperty("user.dir"), ConfigBean.getConfgBean().getExcelPath()).toString();
         File file = new File(string);
         InputStream inputStream = new FileInputStream(file);
         Workbook workbook = new HSSFWorkbook(inputStream);
@@ -122,7 +123,7 @@ public class test extends TestBase {
 
     @Test
     public void test08 () throws IOException {
-        String string = Paths.get(System.getProperty("user.dir"), excelPath).toString();
+        String string = Paths.get(System.getProperty("user.dir"), ConfigBean.getConfgBean().getExcelPath()).toString();
         File file = new File(string);
         InputStream inputStream = new FileInputStream(file);
         Workbook workbook = new HSSFWorkbook(inputStream);
@@ -144,7 +145,7 @@ public class test extends TestBase {
 
     @Test
     public void test09 () throws IOException {
-        String string = Paths.get(System.getProperty("user.dir"), excelPath).toString();
+        String string = Paths.get(System.getProperty("user.dir"), ConfigBean.getConfgBean().getExcelPath()).toString();
         File file = new File(string);
         InputStream inputStream = new FileInputStream(file);
         Workbook workbook = new HSSFWorkbook(inputStream);
@@ -221,11 +222,11 @@ public class test extends TestBase {
 
     @Test
     public void test11 () throws DocumentException {
-        String[] sheetNameArr = sheetName.split(";");
+        String[] sheetNameArr = ConfigBean.getConfgBean().getSheetName().split(";");
         if (sheetNameArr.length == 0 || sheetNameArr[0] == "") {
             System.out.println("test");
         }
-        List<ApiDataBean> dataList = readExcelData(excelPath.split(";"), sheetName.split(";"));
+        List<ApiDataBean> dataList = readExcelData(ConfigBean.getConfgBean().getExcelPath().split(";"), ConfigBean.getConfgBean().getSheetName().split(";"));
         for (ApiDataBean apidatabean : dataList) {
             System.out.println(apidatabean.getUrl());
             System.out.println(apidatabean.getSheetName());
@@ -237,7 +238,7 @@ public class test extends TestBase {
     public void test12 () {
         String shortUrl = "/bankApi/querySubaccountBalance";
         shortUrl = getCommonParam(shortUrl);
-        boolean rooUrlEndWithSlash = url.endsWith("/");
+        boolean rooUrlEndWithSlash = ConfigBean.getConfgBean().getUrl().endsWith("/");
         // 如果url以http开头，直接返回，判断xls中的url
         if (shortUrl.startsWith("http")) {
             System.out.println(shortUrl);
@@ -253,20 +254,20 @@ public class test extends TestBase {
                 shortUrl = "/" + shortUrl;
             }
         }
-        System.out.println(url + shortUrl);
+        System.out.println(ConfigBean.getConfgBean().getUrl() + shortUrl);
     }
 
     @Test
     public void test13 () throws DocumentException {
-        List<ApiDataBean> list = readExcelData(excelPath.split(";"), sheetName.split(";"));
+        List<ApiDataBean> list = readExcelData(ConfigBean.getConfgBean().getExcelPath().split(";"), ConfigBean.getConfgBean().getSheetName().split(";"));
         for (ApiDataBean apiDataBean : list) {
             String apiParam = buildRequestParam(apiDataBean);
             Log.info(apiParam);
             // TODO 执行用例
             HttpClient httpClient = HttpClients.createDefault();
-            url = url + apiDataBean.getUrl();
-            Log.info(url);
-            HttpPost postMethod = new HttpPost(url);
+            String rootUrl = ConfigBean.getConfgBean().getUrl() + apiDataBean.getUrl();
+            Log.info(rootUrl);
+            HttpPost postMethod = new HttpPost(rootUrl);
             Log.info(apiDataBean.getHeader());
             for (String stringHeader : apiDataBean.getHeader().split(";")) {
                 postMethod.setHeader(stringHeader.split("\"")[1], stringHeader.split("\"")[3]);
@@ -310,11 +311,11 @@ public class test extends TestBase {
 
     @Test
     public void test14 () throws IOException, DocumentException {
-        List<ApiDataBean> list = readExcelData(excelPath.split(";"), sheetName.split(";"));
+        List<ApiDataBean> list = readExcelData(ConfigBean.getConfgBean().getExcelPath().split(";"), ConfigBean.getConfgBean().getSheetName().split(";"));
         for (ApiDataBean apiDataBean : list) {
             CloseableHttpClient client = HttpClients.createDefault();
-            Log.info(url + apiDataBean.getUrl());
-            HttpPost httpPost = new HttpPost(url + apiDataBean.getUrl());
+            Log.info(ConfigBean.getConfgBean().getUrl() + apiDataBean.getUrl());
+            HttpPost httpPost = new HttpPost(ConfigBean.getConfgBean().getUrl() + apiDataBean.getUrl());
             // 处理header字段,添加请求头
             for (String string : apiDataBean.getHeader().split(";")) {
                 //httpPost.setHeader(string.split("\"")[1], string.split("\"")[3]);

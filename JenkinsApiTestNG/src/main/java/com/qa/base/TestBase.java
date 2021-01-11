@@ -4,26 +4,32 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.*;
 import com.qa.bean.ApiDataBean;
+import com.qa.bean.ConfigBean;
 import com.qa.util.*;
 import org.apache.log4j.Logger;
+import org.testng.annotations.BeforeSuite;
 
 public class TestBase {
 
     // public Properties prop;
-    protected String host;
+    /*protected String host;
     protected String url;
     protected String excelPath;
     protected String sheetName;
     protected String contentType;
-    protected String cookie;
+    protected String cookie;*/
+
 
     final Logger logger = Logger.getLogger(TestBase.class);
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("config");
+
 
     /**
      * 公共参数数据池（全局可用）
      */
     private static final Map<String, String> saveDatas = new HashMap<String, String>();
+
+    // ConfigBean configBean = ConfigBean.getConfgBean();
+    // ResourceBundle resourceBundle = ResourceBundle.getBundle("config");
 
     /**
      * 截取自定义方法正则表达式：__xxx(ooo)
@@ -32,7 +38,7 @@ public class TestBase {
     // __(\\w*?)\\(((\\w*,?\\w*)*)\\)
 
     //写一个构造函数
-    public TestBase() {
+    static {
 
         /*Logger logger = Logger.getLogger(TestBase.class);
         try {
@@ -46,17 +52,29 @@ public class TestBase {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        url = resourceBundle.getString("HOST");
-        host = resourceBundle.getString("HOST");
-        excelPath = resourceBundle.getString("ExcelPath");
-        sheetName = resourceBundle.getString("SheetName");
-        contentType = resourceBundle.getString("ContentType");
-        cookie = resourceBundle.getString("COOKIE");
+        ConfigBean configBean = ConfigBean.getConfgBean();
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("config");
+        configBean.setUrl(resourceBundle.getString("URL"));
+        configBean.setExcelPath(resourceBundle.getString("ExcelPath"));
+        configBean.setSheetName(resourceBundle.getString("SheetName"));
+        configBean.setContentType(resourceBundle.getString("ContentType"));
+        configBean.setCookie(resourceBundle.getString("COOKIE"));
+        configBean.setToken(resourceBundle.getString("TOKEN"));
         /*String className = this.getClass().getName();
         logger = Logger.getLogger(className);
         // PropertyConfigurator.configure("log4j.properties");
         logger.setLevel(Level.DEBUG);*/
     }
+
+    /*@BeforeSuite
+    public void beforeSuite () {
+        configBean.setUrl(resourceBundle.getString("URL"));
+        configBean.setExcelPath(resourceBundle.getString("ExcelPath"));
+        configBean.setSheetName(resourceBundle.getString("SheetName"));
+        configBean.setContentType(resourceBundle.getString("ContentType"));
+        configBean.setCookie(resourceBundle.getString("COOKIE"));
+        configBean.setToken(resourceBundle.getString("TOKEN"));
+    }*/
 
     /**
      * 根据配置读取测试用例
