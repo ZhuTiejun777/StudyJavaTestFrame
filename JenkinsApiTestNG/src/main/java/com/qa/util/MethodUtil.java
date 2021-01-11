@@ -101,7 +101,7 @@ public class MethodUtil {
 
     private static Header[] parseHeader (String header) {
         List<Header> headers = new ArrayList<Header>();
-        if (!"".equals(header)) {
+        if (header != null && !"".equals(header)) {
             for (String stringHeader : header.split(";")) {
                 headers.add(new BasicHeader(stringHeader.split("\"")[1], stringHeader.split("\"")[3]));
             }

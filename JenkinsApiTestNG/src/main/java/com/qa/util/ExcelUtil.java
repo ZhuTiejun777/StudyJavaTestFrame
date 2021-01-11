@@ -168,6 +168,9 @@ public class ExcelUtil {
                     //遍历表头信息集合，与实体类字段匹配，自己跟据实际情况添加
                     for (String key : keySet) {
                         String value = hashMap.get(key);
+                        if (value == null || "".equals(value)) {
+                            continue;
+                        }
                         switch (key){
                             case "run":{
                                 apiDataBean.setRun(value.equals("Y"));

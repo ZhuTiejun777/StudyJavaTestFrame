@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONPath;
 import com.qa.base.TestBase;
 import com.qa.bean.ApiDataBean;
 import com.qa.bean.ConfigBean;
+import com.qa.bean.ResponseBean;
 import com.qa.tests.TestApi;
 import com.qa.util.ExcelUtil;
 import org.apache.http.HttpEntity;
@@ -14,15 +15,16 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.Header;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.formula.functions.T;
 import org.dom4j.DocumentException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -347,7 +349,37 @@ public class test extends TestBase {
         JSONObject jsonObject = JSON.parseObject(String.valueOf(hashMap));
     }
 
-
+    @Test
+    public void test16 () throws IOException {
+        HttpClient httpClient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost("http://192.168.3.238:58203/chicago-web/user/userList");
+        Header[] headers = new Header[2];
+        headers[0] = new BasicHeader("token", "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJhZG1pbiIsInN1YiI6IueuoeeQhuWRmCIsImlhdCI6MTYxMDMyOTE0NCwiY29tcGFueUlkIjoxLCJleHAiOjE2MTAzNzIzNDR9.YQa7MOAYZYpfrXpYgZV1bk166KNjpd-t672RB81Zlp0");
+        headers[1] = new BasicHeader("Content-Type", "application/json");
+        httpPost.setHeaders(headers);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("pageNo", 0);
+        jsonObject.put("pageSize", 10);
+        jsonObject.put("userId", 10);
+        jsonObject.put("userName", 10);
+        HttpEntity httpEntity = new StringEntity(jsonObject.toString());
+        httpPost.setEntity(httpEntity);
+        HttpResponse response = httpClient.execute(httpPost);
+        String responseBoby = EntityUtils.toString(response.getEntity());
+        System.out.println(responseBoby);
+        // ResponseBean responseBean = JSON.toJavaObject(JSON.parseObject(responseBoby), ResponseBean.class);
+        ResponseBean responseBean = JSON.parseObject(responseBoby, ResponseBean.class);
+        if (!responseBean.isError()) {
+            JSONObject responseJson = JSON.parseObject(responseBean.getData().toString());
+            System.out.println(responseJson.getInteger("startRow"));
+            for (String key : responseJson.keySet()) {
+                System.out.println(key + ":" + responseJson.get(key));
+            }
+        }
+        if (responseBean.getCode() == 200) {
+            System.out.println(responseBean.isSuccess());
+        }
+    }
 
     public static void main(String[] args) throws IOException {
 

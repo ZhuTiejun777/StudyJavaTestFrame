@@ -54,6 +54,10 @@ public class TestApi extends TestBase {
             HttpResponse response = httpClient.execute(method);
             HttpEntity respEntity = response.getEntity();
             responseData= EntityUtils.toString(respEntity, "UTF-8");
+            /*ResponseBean responseBean = JSON.parseObject(responseData, ResponseBean.class);
+            Assert.assertFalse(responseBean.isError(), "request is error");
+            Assert.assertTrue(responseBean.isSuccess(), "request not success");
+            Assert.assertEquals(responseBean.getCode(), 200, "code != 200");*/
             Log.info("响应数据:" + responseData);
             int responseStatus = response.getStatusLine().getStatusCode();
             Log.info("状态码:" + responseStatus);
