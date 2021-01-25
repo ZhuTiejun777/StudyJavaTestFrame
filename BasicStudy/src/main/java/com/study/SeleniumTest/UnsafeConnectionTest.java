@@ -20,7 +20,7 @@ public class UnsafeConnectionTest {
         // opts.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         // WebDriver driver = new ChromeDriver(opts);
 
-        System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+        System.setProperty("webdriver.chrome.driver","./driver/chromedriver");
         ChromeOptions options = new ChromeOptions();
         //FirefoxOptions options = new FirefoxOptions();
         // 关闭提示语

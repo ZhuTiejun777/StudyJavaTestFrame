@@ -33,7 +33,7 @@ public class ActionTest {
         // 创建一个WebDriverWait类的一个对象 wait，设置5，默认单位是秒
         // 等待知道5秒之后该元素还是不可见，就报超时错误。
         WebDriverWait wait2 = new WebDriverWait(driver,5);
-        WebElement element=wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='appleId']")));
+        WebElement element = wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='appleId']")));
         boolean status = element.isDisplayed();
         // 判断
         if (status) {
