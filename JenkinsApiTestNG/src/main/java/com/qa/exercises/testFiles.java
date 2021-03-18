@@ -37,7 +37,7 @@ public class testFiles {
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("filePath", fileUrl_2_4);
-        jsonObject.put("ocrType", 3);
+        jsonObject.put("ocrType", 2);
         jsonObject.put("side", "front");
         try {
             httpClient = HttpClients.createDefault();
