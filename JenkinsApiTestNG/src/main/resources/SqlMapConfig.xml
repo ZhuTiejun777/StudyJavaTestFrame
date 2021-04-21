@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"/>
+
+    <typeAliases>
+        <!-- 定义单个pojo类别名
+        type:类的全路劲名称
+        alias:别名
+         -->
+        <!-- 		<typeAlias type="cn.chuantao.pojo.User" alias="user"/> -->
+
+        <!-- 使用包扫描的方式批量定义别名
+        定以后别名等于类名,不区分大小写,但是建议按照java命名规则来,首字母小写,以后每个单词的首字母大写
+        -->
+        <package name="com.qa.pojo"/>
+    </typeAliases>
+
+    <!-- 和spring整合后 environments配置将废除-->
+    <environments default="development">
+        <environment id="development">
+            <!-- 使用jdbc事务管理-->
+            <transactionManager type="JDBC" />
+            <!-- 数据库连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="User.xml"/>
+
+        <!--
+        使用class属性引入接口的全路径名称:
+        使用规则:
+            1. 接口的名称和映射文件名称除扩展名外要完全相同
+            2. 接口和映射文件要放在同一个目录下
+         -->
+        <!-- 		<mapper class="cn.chuantao.mapper.UserMapper"/> -->
+
+        <!-- 使用包扫描的方式批量引入Mapper接口
+                使用规则:
+                1. 接口的名称和映射文件名称除扩展名外要完全相同
+                2. 接口和映射文件要放在同一个目录下
+        -->
+        <package name="com.qa.mapper"/>
+    </mappers>
+</configuration>

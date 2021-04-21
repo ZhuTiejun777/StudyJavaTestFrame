@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry location="/Users/tiejunzhu/.m2/repository/com/oracle/ojdbc14/10.2.0.4.0/ojdbc14-10.2.0.4.0.jar"/>
+    <context id="context" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!-- 数据库的相关配置 -->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@192.168.3.55:1521:zjporttest?serverTimezone=Asia/HangZhou"
+                        userId="etctest" password="etctest" />
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 实体类生成的位置 -->
+        <javaModelGenerator targetPackage="com.qa.po" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- *Mapper.xml 文件的位置 -->
+        <sqlMapGenerator targetPackage="com.qa.po.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- Mapper 接口文件的位置 -->
+        <javaClientGenerator targetPackage="com.qa.po.dao" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- 相关表的配置 -->
+        <table tableName="employee" domainObjectName="Employee" enableCountByExample="false"  enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+        <table tableName="department" domainObjectName="Department" enableCountByExample="false"  enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+    </context>
+</generatorConfiguration>
+
+        <!--
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE generatorConfiguration
+                PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+                "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+        <generatorConfiguration>
+            &lt;!&ndash;导入属性配置&ndash;&gt;
+            &lt;!&ndash;<properties resource="datasource.properties"/>&ndash;&gt;
+            &lt;!&ndash;指定特定数据库的jdbc驱动jar包的位置&ndash;&gt;
+            &lt;!&ndash;<classPathEntry location="${db.driverLocation}"/>&ndash;&gt;
+            <context id="default" targetRuntime="MyBatis3">
+                &lt;!&ndash; optional，旨在创建class时，对注释进行控制 &ndash;&gt;
+                <commentGenerator>
+                    <property name="suppressDate" value="true"/>
+                    <property name="suppressAllComments" value="true"/>
+                </commentGenerator>
+                &lt;!&ndash;jdbc的数据库连接 &ndash;&gt;
+                <jdbcConnection
+                        driverClass="oracle.jdbc.driver.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@192.168.3.55:1521:zjporttest"
+                        userId="etctest"
+                        password="etctest">
+                </jdbcConnection>
+                &lt;!&ndash; 非必需，类型处理器，在数据库类型和java类型之间的转换控制&ndash;&gt;
+                <javaTypeResolver>
+                    <property name="forceBigDecimals" value="false"/>
+                </javaTypeResolver>
+                &lt;!&ndash; Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
+                    targetPackage     指定生成的model生成所在的包名
+                    targetProject     指定在该项目下所在的路径
+                &ndash;&gt;
+                <javaModelGenerator targetPackage="com.mymall.pojo" targetProject="./src/main/java">
+                    &lt;!&ndash; 是否允许子包，即targetPackage.schemaName.tableName &ndash;&gt;
+                    <property name="enableSubPackages" value="false"/>
+                    &lt;!&ndash; 是否对model添加 构造函数 &ndash;&gt;
+                    <property name="constructorBased" value="true"/>
+                    &lt;!&ndash; 是否对类CHAR类型的列的数据进行trim操作 &ndash;&gt;
+                    <property name="trimStrings" value="true"/>
+                    &lt;!&ndash; 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 &ndash;&gt;
+                    <property name="immutable" value="false"/>
+                </javaModelGenerator>
+                &lt;!&ndash;mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 &ndash;&gt;
+                <sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources">
+                    <property name="enableSubPackages" value="false"/>
+                </sqlMapGenerator>
+                &lt;!&ndash; 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                        type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                        type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
+                        type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
+                &ndash;&gt;
+                <javaClientGenerator type="XMLMAPPER" targetPackage="com.mymall.dao" targetProject="./src/main/java">
+                    &lt;!&ndash; enableSubPackages:是否让schema作为包的后缀 &ndash;&gt;
+                    <property name="enableSubPackages" value="false" />
+                </javaClientGenerator>
+                &lt;!&ndash;生成的表的相关配置 还可以配置其它的属性 根据数据库的表名而定 一般而言只需配置tableName就可以了&ndash;&gt;
+                <table tableName="etc_card" domainObjectName="Shipping"/>
+            </context>
+        </generatorConfiguration>-->
+
+
+        <!--<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE generatorConfiguration
+                PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+                "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+        <generatorConfiguration>
+            &lt;!&ndash;导入属性配置&ndash;&gt;
+            <properties resource="datasource.properties"></properties>
+
+            &lt;!&ndash; 指定数据库驱动的jdbc驱动jar包的位置 &ndash;&gt;
+            <classPathEntry location="${db.driverLocation}" />
+
+            &lt;!&ndash; context 是逆向工程的主要配置信息 &ndash;&gt;
+            &lt;!&ndash; id：起个名字 &ndash;&gt;
+            &lt;!&ndash; targetRuntime：设置生成的文件适用于那个 mybatis 版本 &ndash;&gt;
+            <context id="default" targetRuntime="MyBatis3">
+
+                &lt;!&ndash;optional,旨在创建class时，对注释进行控制&ndash;&gt;
+                <commentGenerator>
+                    <property name="suppressDate" value="true" />
+                    &lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;
+                    <property name="suppressAllComments" value="true" />
+                </commentGenerator>
+
+                &lt;!&ndash;jdbc的数据库连接&ndash;&gt;
+                <jdbcConnection driverClass="${db.driverClassName}"
+                                connectionURL="${db.url}"
+                                userId="${db.username}"
+                                password="${db.password}">
+                </jdbcConnection>
+
+                &lt;!&ndash;非必须，类型处理器，在数据库类型和java类型之间的转换控制&ndash;&gt;
+                <javaTypeResolver>
+                    &lt;!&ndash; 默认情况下数据库中的 decimal，bigInt 在 Java 对应是 sql 下的 BigDecimal 类 &ndash;&gt;
+                    &lt;!&ndash; 不是 double 和 long 类型 &ndash;&gt;
+                    &lt;!&ndash; 使用常用的基本类型代替 sql 包下的引用类型 &ndash;&gt;
+                    <property name="forceBigDecimals" value="false" />
+                </javaTypeResolver>
+
+                &lt;!&ndash; targetPackage：生成的实体类所在的包 &ndash;&gt;
+                &lt;!&ndash; targetProject：生成的实体类所在的硬盘位置 &ndash;&gt;
+                <javaModelGenerator targetPackage="com.mall.pojo"
+                                    targetProject=".\src\main\java">
+                    &lt;!&ndash; 是否允许子包 &ndash;&gt;
+                    <property name="enableSubPackages" value="false" />
+                    &lt;!&ndash; 是否对modal添加构造函数 &ndash;&gt;
+                    <property name="constructorBased" value="true" />
+                    &lt;!&ndash; 是否清理从数据库中查询出的字符串左右两边的空白字符 &ndash;&gt;
+                    <property name="trimStrings" value="true" />
+                    &lt;!&ndash; 建立modal对象是否不可改变 即生成的modal对象不会有setter方法，只有构造方法 &ndash;&gt;
+                    <property name="immutable" value="false" />
+                </javaModelGenerator>
+
+                &lt;!&ndash; targetPackage 和 targetProject：生成的 mapper 文件的包和位置 &ndash;&gt;
+                <sqlMapGenerator targetPackage="mappers"
+                                 targetProject=".\src\main\resource">
+                    &lt;!&ndash; 针对数据库的一个配置，是否把 schema 作为字包名 &ndash;&gt;
+                    <property name="enableSubPackages" value="false" />
+                </sqlMapGenerator>
+
+                &lt;!&ndash; targetPackage 和 targetProject：生成的 interface 文件的包和位置 &ndash;&gt;
+                <javaClientGenerator type="XMLMAPPER"
+                                     targetPackage="com.mall.dao" targetProject=".\src\main\java">
+                    &lt;!&ndash; 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 &ndash;&gt;
+                    <property name="enableSubPackages" value="false" />
+                </javaClientGenerator>
+                <table tableName="user" domainObjectName="User"
+                       enableCountByExample="false" enableUpdateByExample="false"
+                       enableDeleteByExample="false" enableSelectByExample="false"
+                       selectByExampleQueryId="false">
+                </table>
+            </context>
+        </generatorConfiguration>-->

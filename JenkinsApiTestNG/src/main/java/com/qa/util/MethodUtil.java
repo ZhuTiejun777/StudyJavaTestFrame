@@ -4,6 +4,7 @@ import com.qa.bean.ApiDataBean;
 import com.qa.bean.ConfigBean;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicHeader;
@@ -40,6 +41,10 @@ public class MethodUtil {
             // 封装post方法
             HttpPost postMethod = new HttpPost(url);
             postMethod.setHeaders(headers);
+            // 设置响应时间
+            RequestConfig config = RequestConfig.custom().setConnectTimeout(10000)
+                    .setSocketTimeout(10000).build();
+            postMethod.setConfig(config);
             //如果请求头的content-type的值包含form-data 或者 请求方法为upload(上传)时采用MultipartEntity形式
             // TODO from和upload格式数据
             // HttpEntity entity  = parseEntity(param,requestByFormData || "upload".equalsIgnoreCase(method));

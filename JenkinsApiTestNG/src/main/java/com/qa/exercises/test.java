@@ -9,6 +9,7 @@ import com.qa.bean.ApiDataBean;
 import com.qa.bean.ConfigBean;
 import com.qa.bean.ResponseBean;
 import com.qa.tests.TestApi;
+import com.qa.util.DateUtils;
 import com.qa.util.ExcelUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -379,6 +380,12 @@ public class test extends TestBase {
         if (responseBean.getCode() == 200) {
             System.out.println(responseBean.isSuccess());
         }
+    }
+
+    @Test
+    public void test17 () {
+        System.out.println(DateUtils.getTodayTimeStemp());
+        System.out.println(DateUtils.dateTime());
     }
 
     public static void main(String[] args) throws IOException {

@@ -13,6 +13,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -162,6 +163,13 @@ public class testForm {
         }
 
         return httpClient;
+    }
+
+
+    @Test
+    public void test01 () {
+        String str = "58113DA197FA4F05AD8B4CC2264C7273";
+        System.out.println(str.length());
     }
 
 }

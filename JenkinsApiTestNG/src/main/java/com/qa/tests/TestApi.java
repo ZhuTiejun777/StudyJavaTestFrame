@@ -9,6 +9,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.*;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
@@ -16,6 +17,7 @@ import org.dom4j.DocumentException;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
@@ -47,7 +49,8 @@ public class TestApi extends TestBase {
         // String apiParam = buildRequestParam(apiDataBean);
         // String rootUrl = parseUrl(apiDataBean.getUrl(), url);
         // Log.info("请求数据:" + apiParam);
-        HttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        // CloseableHttpClient client = HttpClients.custom().build();
         HttpUriRequest method = parseHttpRequest(apiDataBean, ConfigBean.getConfgBean().getUrl());
         String responseData = null;
         try {

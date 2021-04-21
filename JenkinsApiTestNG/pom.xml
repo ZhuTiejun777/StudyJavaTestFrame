@@ -6,11 +6,23 @@
     <groupId>org.example</groupId>
     <artifactId>JenkinsApiTestNG</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <source>14</source>
@@ -33,8 +45,10 @@
                             <value>./target/allure-results</value>
                         </property>
                     </systemProperties>-->
+
+
                     <!-- 构建时执行用例 -->
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <!--<testFailureIgnore>true</testFailureIgnore>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
@@ -51,8 +65,8 @@
                         </property>
                     </properties>
                     <forkMode>always</forkMode>
-                    <!-- 解决报告中中文乱码 -->
-                    <argLine>-Dfile.encoding=UTF-8</argLine>
+                    &lt;!&ndash; 解决报告中中文乱码 &ndash;&gt;
+                    <argLine>-Dfile.encoding=UTF-8</argLine>-->
                 </configuration>
                 <!--<dependencies>
                     <dependency>
@@ -157,9 +171,9 @@
             <version>2.11.0</version>
         </dependency>
         <!--<dependency>
-            <groupId>oracle</groupId>
-            <artifactId>oracle-driver-ojdbc6</artifactId>
-            <version>11.2.0.1.0-SNAPSHOT</version>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>10.2.0.4.0</version>
         </dependency>-->
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
@@ -191,12 +205,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
             <version>2.0-BETA14</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -212,7 +226,23 @@
             <artifactId>extentreports</artifactId>
             <version>3.1.5</version>
         </dependency>
-
-
+        <!--lombok 注解-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>data-factory-function</groupId>
+            <artifactId>data-factory-function</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/libs/data-factory-function.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>

@@ -1,5 +1,6 @@
 package com.qa.bean;
 
+
 public class ApiDataBean {
     private boolean run;
     private String desc; // 接口描述
