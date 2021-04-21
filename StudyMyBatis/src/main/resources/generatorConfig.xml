@@ -42,7 +42,7 @@
                 "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
         <generatorConfiguration>
             &lt;!&ndash;导入属性配置&ndash;&gt;
-            &lt;!&ndash;<properties resource="datasource.properties"/>&ndash;&gt;
+            &lt;!&ndash;<properties resource="db.properties"/>&ndash;&gt;
             &lt;!&ndash;指定特定数据库的jdbc驱动jar包的位置&ndash;&gt;
             &lt;!&ndash;<classPathEntry location="${db.driverLocation}"/>&ndash;&gt;
             <context id="default" targetRuntime="MyBatis3">
@@ -102,7 +102,7 @@
 
         <generatorConfiguration>
             &lt;!&ndash;导入属性配置&ndash;&gt;
-            <properties resource="datasource.properties"></properties>
+            <properties resource="db.properties"></properties>
 
             &lt;!&ndash; 指定数据库驱动的jdbc驱动jar包的位置 &ndash;&gt;
             <classPathEntry location="${db.driverLocation}" />

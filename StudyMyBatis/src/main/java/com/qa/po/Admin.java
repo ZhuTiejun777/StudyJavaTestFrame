@@ -11,19 +11,16 @@ import java.util.Date;
 
 @Entity
 @Getter
-@Table(name = "etc_card") // 指定对应的表
-public class EtcCard {
+@Table(name = "admin") // 指定对应的表
+public class Admin {
 
     @Id
-    private String id;
+    @Column(name = "admin_id")
+    private int adminId;
 
-    @Column(name = "vehicle_code")
-    private String vehicle_code;
+    @Column(name = "password")
+    private String password;
 
-    @Column(name = "create_time")
-    private Date create_time;
-
-    private int card_status;
 
     // 需要在get方法上使用
     // 数据库表字段与result不一致时用@Column注解，例如：
@@ -39,16 +36,14 @@ public class EtcCard {
         return cardStatus;
     }*/
 
-    private String card_code;
 
-    @Column(scale = 2)
-    private double banlance;
+    @Column(name = "username")
+    private double username;
 
     @Override
     public String toString () {
-        return "id=" + getId() + ";" + "vehicle_code=" + getVehicle_code() + ";" +
-                "create_time=" + getCreate_time() + ";" + "card_status=" + getCard_status() + ";" +
-                "card_code=" + getCard_code() + ";" + "banlance=" + getBanlance() + ";";
+        return "adminID=" + getAdminId() + ";" + "password=" + getPassword() + ";" +
+                "username=" + getUsername() + ";";
     }
 
 }
