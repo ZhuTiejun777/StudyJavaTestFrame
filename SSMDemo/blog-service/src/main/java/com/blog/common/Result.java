@@ -4,7 +4,7 @@ package com.blog.common;
 import com.google.gson.Gson;
 
 /**
- * @author liushiyao
+ * @author 
  * 返回结果集对象
  */
 

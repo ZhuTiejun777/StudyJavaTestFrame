@@ -10,6 +10,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 public class testFiles {
@@ -68,6 +69,32 @@ public class testFiles {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void test01() {
+        String fileName = "/Users/tiejunzhu/Desktop/人行征信/人行征信/jvm监控/BaseData/result.csv";
+        File file = new File(fileName);
+        if (file.delete()) {
+            System.out.println("result.csv删除成功");
+        }
+
+    }
+
+    @Test
+    public void test02() {
+        String fileDir = "/Users/tiejunzhu/Desktop/人行征信/人行征信/jvm监控/responseJson/";
+        File responseFileDir = new File(fileDir);
+        //取得这个目录下的所有子文件对象
+        File[] responseFiles = responseFileDir.listFiles();
+        //遍历该目录下的文件对象
+        for (File responseFile: responseFiles){
+            if (responseFile.delete()) {
+                System.out.println(responseFile.getName() + "删除成功");
+            }
+        }
+
+    }
+
 
 
     /**

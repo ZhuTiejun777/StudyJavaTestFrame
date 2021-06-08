@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -7,18 +7,18 @@
         http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-    <!-- 扫描类包，将标注Spring注解的类自动转化为Bean，同时完成Bean的注入  -->
+    &lt;!&ndash; 扫描类包，将标注Spring注解的类自动转化为Bean，同时完成Bean的注入  &ndash;&gt;
     <context:component-scan base-package="com.library.core.mapper.dao"/>
     <context:component-scan base-package="com.library.core.serviceImpl"/>
     <context:property-placeholder location="classpath*:db.properties"/>
-    <!--  定义一个使用DBCP实现的数据源 -->
+    &lt;!&ndash;  定义一个使用DBCP实现的数据源 &ndash;&gt;
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="${driver}"/>
-        <!-- url -->
+        &lt;!&ndash; url &ndash;&gt;
         <property name="url" value="${url}"/>
-        <!-- 用户名 -->
+        &lt;!&ndash; 用户名 &ndash;&gt;
         <property name="username" value="${username}"/>
-        <!-- 密码 -->
+        &lt;!&ndash; 密码 &ndash;&gt;
         <property name="password" value="${password}"/>
     </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -28,4 +28,4 @@
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
-</beans>
+</beans>-->
